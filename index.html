@@ -1,0 +1,4114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STRATA CORP. — Subsurface Mining, Structural Engineering &amp; Commodity Tycoon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ==========================================================================
+       1. PURE EMBEDDED CSS — DAYLIGHT-FIRST CAD STUDIO + NIGHT BLUEPRINT THEME
+       ========================================================================== */
+    :root {
+      --bg-canvas: #f6f7f9;
+      --bg-surface: #ffffff;
+      --bg-subtle: #f1f5f9;
+      --bg-hover: #f8fafc;
+      --border-hairline: #d8dee8;
+      --border-strong: #cbd5e1;
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+
+      --accent-cyan: #0284c7;
+      --accent-cyan-bg: #f0f9ff;
+      --accent-cyan-border: #bae6fd;
+
+      --emerald: #059669;
+      --emerald-bg: #ecfdf5;
+      --emerald-border: #a7f3d0;
+
+      --amber: #d97706;
+      --amber-bg: #fffbeb;
+      --amber-border: #fde68a;
+
+      --crimson: #dc2626;
+      --crimson-bg: #fef2f2;
+      --crimson-border: #fecaca;
+
+      --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
+      --shadow-md: 0 6px 16px -4px rgba(15, 23, 42, 0.12);
+      --shadow-lg: 0 18px 40px -8px rgba(15, 23, 42, 0.28);
+    }
+
+    body.dark-mode {
+      --bg-canvas: #0b0e14;
+      --bg-surface: #121722;
+      --bg-subtle: #182030;
+      --bg-hover: #1e283b;
+      --border-hairline: #253146;
+      --border-strong: #334155;
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+
+      --accent-cyan: #38bdf8;
+      --accent-cyan-bg: rgba(56, 189, 248, 0.14);
+      --accent-cyan-border: rgba(56, 189, 248, 0.35);
+
+      --emerald: #10b981;
+      --emerald-bg: rgba(16, 185, 129, 0.14);
+      --emerald-border: rgba(16, 185, 129, 0.35);
+
+      --amber: #f59e0b;
+      --amber-bg: rgba(245, 158, 11, 0.14);
+      --amber-border: rgba(245, 158, 11, 0.35);
+
+      --crimson: #f43f5e;
+      --crimson-bg: rgba(244, 63, 94, 0.14);
+      --crimson-border: rgba(244, 63, 94, 0.35);
+
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.35);
+      --shadow-md: 0 8px 20px rgba(0, 0, 0, 0.45);
+      --shadow-lg: 0 22px 48px rgba(0, 0, 0, 0.65);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      max-width: 100vw;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    @media (min-width: 1024px) {
+      body {
+        overflow: hidden;
+      }
+    }
+
+    .mono {
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* ==========================================================================
+       2. TOP 48PX CAD HUD BAR & MOBILE KPI STRIP
+       ========================================================================== */
+    .top-hud {
+      height: 48px;
+      min-height: 48px;
+      background-color: var(--bg-surface);
+      border-bottom: 1px solid var(--border-hairline);
+      padding: 0 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      z-index: 40;
+      flex-shrink: 0;
+    }
+
+    .hud-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 30px;
+      padding: 0 9px;
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border-hairline);
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .brand-badge svg {
+      width: 16px;
+      height: 16px;
+      color: var(--accent-cyan);
+      flex-shrink: 0;
+    }
+
+    .parcel-select {
+      height: 30px;
+      padding: 0 8px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: 6px;
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      max-width: 225px;
+    }
+
+    .parcel-select:hover {
+      border-color: var(--border-strong);
+      background-color: var(--bg-hover);
+    }
+
+    .kpi-ribbon {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      height: 30px;
+      padding: 0 10px;
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border-hairline);
+      border-radius: 6px;
+      font-size: 11px;
+    }
+
+    @media (min-width: 1220px) {
+      .kpi-ribbon {
+        display: flex;
+      }
+    }
+
+    .kpi-sep {
+      color: var(--border-strong);
+      user-select: none;
+    }
+
+    .kpi-label {
+      color: var(--text-muted);
+      margin-right: 3px;
+    }
+
+    .ipo-meter-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ipo-track {
+      width: 58px;
+      height: 6px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .ipo-fill {
+      height: 100%;
+      width: 6.8%;
+      background-color: var(--emerald);
+      transition: width 0.2s ease;
+    }
+
+    .delta-pill {
+      display: inline-block;
+      padding: 1px 4px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      margin-left: 3px;
+      background-color: var(--emerald-bg);
+      color: var(--emerald);
+    }
+
+    .msha-pill {
+      display: inline-block;
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-size: 10.5px;
+      font-weight: 700;
+      background-color: var(--emerald-bg);
+      color: var(--emerald);
+    }
+
+    .mobile-kpi-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 5px 12px;
+      background-color: var(--bg-surface);
+      border-bottom: 1px solid var(--border-hairline);
+      font-size: 11px;
+    }
+
+    @media (min-width: 1220px) {
+      .mobile-kpi-bar {
+        display: none;
+      }
+    }
+
+    /* ==========================================================================
+       3. CONTROLS, SEGMENTED TRACKS, CARDS & BUTTONS
+       ========================================================================== */
+    .seg-track {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      padding: 2px;
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border-hairline);
+      border-radius: 6px;
+    }
+
+    .seg-btn {
+      height: 24px;
+      padding: 0 7px;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 11px;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.12s ease, color 0.12s ease;
+    }
+
+    .seg-btn:hover {
+      color: var(--text-primary);
+    }
+
+    .seg-btn.active {
+      background-color: var(--bg-surface);
+      color: var(--text-primary);
+      font-weight: 700;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+    }
+
+    .cad-btn {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      color: var(--text-secondary);
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 11px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+    }
+
+    .cad-btn:hover:not(:disabled) {
+      background-color: var(--bg-hover);
+      border-color: var(--border-strong);
+      color: var(--text-primary);
+    }
+
+    .cad-btn:disabled {
+      opacity: 0.44;
+      cursor: not-allowed;
+    }
+
+    .cad-btn.active {
+      background-color: var(--accent-cyan-bg);
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+      font-weight: 600;
+    }
+
+    .cad-btn.danger-active {
+      background-color: var(--crimson);
+      border-color: var(--crimson);
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .btn-hud {
+      height: 30px;
+      padding: 0 9px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+    }
+
+    .btn-solid-emerald {
+      background-color: var(--emerald);
+      border: 1px solid var(--emerald);
+      color: #ffffff;
+      border-radius: 6px;
+      font-family: inherit;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-solid-emerald:hover:not(:disabled) {
+      filter: brightness(1.06);
+    }
+
+    .btn-solid-emerald:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .btn-solid-cyan {
+      background-color: var(--accent-cyan);
+      border: 1px solid var(--accent-cyan);
+      color: #ffffff;
+      border-radius: 6px;
+      font-family: inherit;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-solid-cyan:hover:not(:disabled) {
+      filter: brightness(1.06);
+    }
+
+    .cad-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: 6px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .sub-box {
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border-hairline);
+      border-radius: 5px;
+      padding: 6px 8px;
+    }
+
+    /* ==========================================================================
+       4. MAIN 3-COLUMN WORKSPACE (236PX LEFT | 1FR CENTER | 308PX RIGHT)
+       ========================================================================== */
+    .workspace-grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr;
+      min-height: 0;
+      min-width: 0;
+    }
+
+    @media (min-width: 1024px) {
+      .workspace-grid {
+        grid-template-columns: 236px minmax(0, 1fr) 308px;
+        height: calc(100vh - 48px);
+      }
+    }
+
+    .side-column {
+      background-color: var(--bg-surface);
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      overflow-y: auto;
+      min-width: 0;
+    }
+
+    .left-palette {
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .right-ops {
+      border-top: 1px solid var(--border-hairline);
+    }
+
+    @media (min-width: 1024px) {
+      .left-palette {
+        border-bottom: none;
+        border-right: 1px solid var(--border-hairline);
+      }
+      .right-ops {
+        border-top: none;
+        border-left: 1px solid var(--border-hairline);
+      }
+    }
+
+    .section-block {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .section-divider {
+      padding-top: 7px;
+      border-top: 1px solid var(--border-hairline);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4px;
+    }
+
+    .section-title {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5px;
+    }
+
+    .tool-btn {
+      height: 28px;
+      padding: 0 7px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-align: left;
+    }
+
+    .mat-btn {
+      padding: 5px 7px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      text-align: left;
+    }
+
+    .mat-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4px;
+    }
+
+    .mat-swatch {
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .key-cap {
+      font-size: 9px;
+      padding: 0 4px;
+      border-radius: 3px;
+      background-color: var(--bg-subtle);
+      color: var(--text-muted);
+      border: 1px solid var(--border-hairline);
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      height: 6px;
+      border-radius: 999px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      background-color: var(--emerald);
+      transition: width 0.15s ease;
+    }
+
+    /* ==========================================================================
+       5. CENTER CANVAS VIEWPORT & OVERLAYS
+       ========================================================================== */
+    .center-viewport {
+      display: flex;
+      flex-direction: column;
+      min-height: 440px;
+      min-width: 0;
+      position: relative;
+      background-color: var(--bg-canvas);
+    }
+
+    .canvas-toolbar {
+      background-color: var(--bg-surface);
+      border-bottom: 1px solid var(--border-hairline);
+      padding: 5px 10px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      z-index: 20;
+      flex-shrink: 0;
+    }
+
+    .context-pill {
+      padding: 3px 8px;
+      border-radius: 5px;
+      font-size: 10.5px;
+      font-weight: 700;
+      background-color: var(--accent-cyan-bg);
+      color: var(--accent-cyan);
+    }
+
+    .canvas-stage {
+      flex: 1;
+      position: relative;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    #mineCanvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      touch-action: none;
+      cursor: crosshair;
+    }
+
+    .shift-banner {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 20;
+      max-width: 280px;
+      padding: 8px 10px;
+      border-left: 3px solid var(--amber);
+      box-shadow: var(--shadow-md);
+      font-size: 11px;
+    }
+
+    .hover-tooltip {
+      position: absolute;
+      z-index: 30;
+      pointer-events: none;
+      padding: 6px 9px;
+      font-size: 10.5px;
+      box-shadow: var(--shadow-md);
+      min-width: 175px;
+    }
+
+    .legend-bar {
+      position: absolute;
+      bottom: 8px;
+      left: 10px;
+      z-index: 15;
+      padding: 4px 8px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      font-size: 10px;
+      color: var(--text-secondary);
+      opacity: 0.94;
+    }
+
+    .legend-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+      margin-right: 4px;
+      vertical-align: middle;
+    }
+
+    /* ==========================================================================
+       6. RIGHT OPERATIONS PANEL TABS & NEWS WIRE
+       ========================================================================== */
+    .ops-tabs {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      width: 100%;
+      flex-shrink: 0;
+    }
+
+    .ops-tabs .seg-btn {
+      padding: 0 3px;
+      font-size: 10.5px;
+    }
+
+    .sparkline-box {
+      width: 100%;
+      height: 44px;
+      margin-top: 4px;
+    }
+
+    #oilSparkline {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .news-wire-card {
+      flex: 1;
+      min-height: 135px;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .news-list {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      overflow-y: auto;
+      padding-right: 2px;
+    }
+
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background-color: var(--emerald);
+      animation: pulseAnim 1.8s infinite;
+    }
+
+    @keyframes pulseAnim {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(0.85); }
+    }
+
+    /* ==========================================================================
+       7. TOAST NOTIFICATION & MODALS (STRIKE, COURTROOM & IPO VICTORY)
+       ========================================================================== */
+    #toastBanner {
+      position: fixed;
+      bottom: 14px;
+      right: 14px;
+      z-index: 9999;
+      background-color: var(--bg-surface);
+      color: var(--text-primary);
+      border: 1px solid var(--border-strong);
+      border-radius: 7px;
+      padding: 8px 12px;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      max-width: 340px;
+      transform: translateY(150%);
+      opacity: 0;
+      transition: transform 0.16s ease, opacity 0.14s ease;
+      pointer-events: none;
+    }
+
+    #toastBanner.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      background-color: rgba(15, 23, 42, 0.68);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+    }
+
+    .modal-dialog {
+      width: 100%;
+      max-width: 650px;
+      max-height: 92vh;
+      overflow-y: auto;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .badge-pill {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #ffffff;
+    }
+
+    .court-canvas-wrap {
+      width: 100%;
+      height: 156px;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--border-hairline);
+    }
+
+    #courtroomCanvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .counsel-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    @media (min-width: 640px) {
+      .counsel-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .option-card-btn {
+      padding: 9px 11px;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(100, 116, 139, 0.32); border-radius: 999px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(100, 116, 139, 0.52); }
+  </style>
+</head>
+<body>
+
+  <!-- Non-Blocking Toast Notification -->
+  <div id="toastBanner">
+    <span id="toastDot" style="width:8px; height:8px; border-radius:999px; background-color:var(--accent-cyan); flex-shrink:0;"></span>
+    <div style="min-width:0;">
+      <div id="toastTitle" style="font-size:12px; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">STRATA CORP.</div>
+      <div id="toastSub" style="font-size:11px; color:var(--text-secondary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Subsurface Engineering Studio Ready</div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       1. TOP 48PX CAD HUD BAR
+       ======================================================================== -->
+  <header class="top-hud">
+    <div class="hud-group">
+      <div class="brand-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 2L3 7v10l9 5 9-5V7l-9-5zm0 0v20m-9-5l9-5 9 5" />
+        </svg>
+        <span class="mono">STRATA CORP.</span>
+      </div>
+
+      <select id="parcelSelect" onchange="handleParcelSelectChange(this.value)" class="parcel-select">
+        <option value="p1">1. Permian Basin Flats</option>
+        <option value="p2">2. Sierra Madre Foothills ($180k)</option>
+        <option value="p3">3. Deep Crust Rift Zone ($420k)</option>
+      </select>
+    </div>
+
+    <div class="kpi-ribbon mono">
+      <div title="Liquid Operating Cash">
+        <span class="kpi-label">CASH:</span>
+        <strong id="hudCashVal" style="font-size:12px; color:var(--emerald);">$68,000</strong>
+      </div>
+      <span class="kpi-sep">|</span>
+      <div class="ipo-meter-wrap" title="Total Net Worth toward $1,000,000 IPO Goal">
+        <span><span class="kpi-label">IPO:</span><strong id="hudNetWorthVal">$68,000</strong><span style="color:var(--text-muted)">/$1M</span></span>
+        <div class="ipo-track">
+          <div id="hudGoalBar" class="ipo-fill"></div>
+        </div>
+      </div>
+      <span class="kpi-sep">|</span>
+      <div title="Live WTI Crude Oil Spot Price">
+        <span class="kpi-label">WTI:</span>
+        <strong id="hudOilPrice">$83.98</strong>
+        <span id="hudOilDelta" class="delta-pill">+1.4%</span>
+      </div>
+      <span class="kpi-sep">|</span>
+      <div title="MSHA Safety Compliance Rating (A/A+ earns $3,000 periodic grants)">
+        <span class="kpi-label">MSHA:</span>
+        <strong id="hudSafetyVal" class="msha-pill">A+</strong>
+      </div>
+      <span class="kpi-sep">|</span>
+      <div title="Crew Active / Idle / Morale %">
+        <span class="kpi-label">Crew:</span>
+        <strong id="hudCrewVal">2A/0I • 88%</strong>
+      </div>
+    </div>
+
+    <div class="hud-group" style="flex-shrink:0;">
+      <div class="seg-track" title="Simulation Speed (Shortcut: Space)">
+        <button id="spdBtn_0" onclick="setSimSpeed(0)" class="seg-btn mono">Pause</button>
+        <button id="spdBtn_1" onclick="setSimSpeed(1)" class="seg-btn mono active">1x</button>
+        <button id="spdBtn_2" onclick="setSimSpeed(2)" class="seg-btn mono">2x</button>
+        <button id="spdBtn_4" onclick="setSimSpeed(4)" class="seg-btn mono">4x</button>
+      </div>
+
+      <button id="evacBtn" onclick="toggleEmergencyEvacuate()" title="Recall all underground miners to surface hoist safety zone (Shortcut: E)" class="cad-btn btn-hud" style="color:var(--crimson); font-weight:600;">
+        <span style="width:6px; height:6px; border-radius:999px; background:currentColor;"></span>
+        <span id="evacBtnText">Evacuate</span>
+      </button>
+
+      <button id="sfxToggleBtn" onclick="toggleSfx()" title="Toggle Web Audio API Industrial SFX (Shortcut: M)" class="cad-btn btn-hud mono active" style="font-size:10.5px;">
+        SFX
+      </button>
+
+      <div class="seg-track" title="Daylight / Night Blueprint CAD Theme">
+        <button id="themeDayBtn" onclick="setTheme(false)" class="seg-btn active" aria-label="Daylight Theme">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.2">
+            <circle cx="12" cy="12" r="4" /><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41" />
+          </svg>
+        </button>
+        <button id="themeNightBtn" onclick="setTheme(true)" class="seg-btn" aria-label="Night Blueprint Theme">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+          </svg>
+        </button>
+      </div>
+
+      <button onclick="resetCampaign()" class="cad-btn btn-hud" title="Reset Campaign">
+        Reset
+      </button>
+    </div>
+  </header>
+
+  <!-- Compact Responsive KPI Strip for Tablet / Mobile -->
+  <div class="mobile-kpi-bar mono">
+    <div>Cash: <strong id="mHudCashVal" style="color:var(--emerald)">$68,000</strong></div>
+    <div>IPO: <strong id="mHudNetWorthVal">$68,000</strong>/$1M</div>
+    <div>WTI: <strong id="mHudOilPrice">$83.98</strong></div>
+    <div>MSHA: <strong id="mHudSafetyVal" style="color:var(--emerald)">A+</strong></div>
+    <div>Crew: <strong id="mHudCrewVal">2A/0I • 88%</strong></div>
+  </div>
+
+  <!-- ========================================================================
+       2. MAIN 3-COLUMN WORKSPACE (236PX LEFT | 1FR CENTER | 308PX RIGHT)
+       ======================================================================== -->
+  <div class="workspace-grid">
+
+    <!-- LEFT PALETTE (236PX) -->
+    <aside class="side-column left-palette">
+      <div class="section-block">
+        <div class="section-header">
+          <span class="section-title">1. CAD &amp; Survey Tools</span>
+          <span class="mono" style="font-size:9.5px; color:var(--text-muted)">1–5 • S • D • X</span>
+        </div>
+        <div class="grid-2">
+          <button id="toolBtn_blueprint" onclick="setActiveTool('blueprint')" class="cad-btn tool-btn active">
+            <span>Shaft Plan</span>
+            <span class="mono" style="font-size:9px; opacity:0.75;">DRAG</span>
+          </button>
+          <button id="toolBtn_sonar" onclick="setActiveTool('sonar')" class="cad-btn tool-btn">
+            <span>[S] Sonar</span>
+            <span class="mono" style="font-size:9.5px; color:var(--accent-cyan); font-weight:700;">$450</span>
+          </button>
+          <button id="toolBtn_drill" onclick="setActiveTool('drill')" class="cad-btn tool-btn">
+            <span>[D] Aim Drill</span>
+            <span class="mono" style="font-size:9.5px; color:var(--amber); font-weight:700;">RIG</span>
+          </button>
+          <button id="toolBtn_demolish" onclick="setActiveTool('demolish')" class="cad-btn tool-btn">
+            <span>[X] Salvage</span>
+            <span class="mono" style="font-size:9.5px; color:var(--emerald); font-weight:700;">80%</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="section-block section-divider">
+        <div class="section-header">
+          <span class="section-title" style="color:var(--accent-cyan)">2. Support Framing (1–5)</span>
+          <span class="mono" style="font-size:9.5px; color:var(--text-muted)">Load Cap</span>
+        </div>
+        <div id="supportMaterialsList" class="section-block"></div>
+      </div>
+
+      <div class="section-block section-divider">
+        <div class="section-header">
+          <span class="section-title" style="color:var(--emerald)">3. Underground Utilities</span>
+          <span class="mono" style="font-size:9.5px; color:var(--text-muted)">In-Shaft</span>
+        </div>
+        <div class="grid-2">
+          <button id="toolBtn_vent" onclick="setActiveTool('vent')" class="cad-btn tool-btn">
+            <span>Vent Duct</span>
+            <span class="mono" style="font-size:9.5px; color:var(--emerald); font-weight:700;">$650</span>
+          </button>
+          <button id="toolBtn_pump" onclick="setActiveTool('pump')" class="cad-btn tool-btn">
+            <span>Sump Pump</span>
+            <span class="mono" style="font-size:9.5px; color:var(--accent-cyan); font-weight:700;">$850</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="section-block section-divider">
+        <div class="section-header">
+          <span class="section-title" style="color:var(--amber)">4. Drill Fleet &amp; Throttle</span>
+          <button id="toggleDrillActiveBtn" onclick="toggleDrillRunning()" class="cad-btn mono" style="height:20px; padding:0 6px; font-size:9.5px; font-weight:700;">
+            Rig: ON
+          </button>
+        </div>
+
+        <div class="seg-track" style="display:grid; grid-template-columns:repeat(3,1fr);">
+          <button id="throtBtn_eco" onclick="setDrillThrottle('eco')" class="seg-btn" style="height:22px; font-size:10px;">Eco</button>
+          <button id="throtBtn_std" onclick="setDrillThrottle('std')" class="seg-btn active" style="height:22px; font-size:10px;">Standard</button>
+          <button id="throtBtn_over" onclick="setDrillThrottle('over')" class="seg-btn" style="height:22px; font-size:10px; color:var(--crimson);">Overdrive</button>
+        </div>
+
+        <div class="sub-box" style="display:flex; flex-direction:column; gap:4px;">
+          <div style="display:flex; justify-content:space-between; font-size:10px;" class="mono">
+            <span style="color:var(--text-secondary)">Bit Integrity:</span>
+            <strong id="bitIntegrityText" style="color:var(--emerald)">100%</strong>
+          </div>
+          <div class="progress-bar-bg">
+            <div id="bitIntegrityBar" class="progress-bar-fill" style="width:100%;"></div>
+          </div>
+          <button onclick="repairDrillBit()" class="cad-btn mono" style="height:23px; font-size:10px; font-weight:600; margin-top:2px;">
+            Replace Drill Bit ($600)
+          </button>
+        </div>
+
+        <div id="drillRigList" class="section-block"></div>
+      </div>
+    </aside>
+
+    <!-- CENTER VIEWPORT -->
+    <main class="center-viewport">
+      <div class="canvas-toolbar">
+        <div style="display:flex; flex-wrap:wrap; align-items:center; gap:6px;">
+          <span id="contextToolPill" class="context-pill mono">
+            SHAFT PLANNER: Timber Cribbing ($120/crate • 180 kN)
+          </span>
+          <span id="contextHintText" style="font-size:11px; color:var(--text-muted);">
+            Drag across the 24×18 grid to plan tunnels &amp; shafts
+          </span>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:5px;">
+          <span id="cursorGridHud" class="mono" style="font-size:10.5px; padding:3px 7px; border-radius:5px; background-color:var(--bg-subtle); border:1px solid var(--border-hairline); color:var(--text-secondary);">
+            Col 10 • 0.0m (Topsoil)
+          </span>
+          <button onclick="deployStarterDrift()" class="cad-btn" style="height:26px; padding:0 8px; font-size:10.5px; color:var(--accent-cyan); font-weight:600;" title="Auto-plan a starter drift">
+            Quick Drift
+          </button>
+          <div class="seg-track" title="Canvas Zoom (0.75x – 1.85x)">
+            <button onclick="adjustZoom(-0.15)" class="seg-btn mono" style="height:22px; padding:0 6px;">−</button>
+            <span id="zoomLevelLabel" class="mono" style="font-size:10px; padding:0 4px;">1.00x</span>
+            <button onclick="adjustZoom(0.15)" class="seg-btn mono" style="height:22px; padding:0 6px;">+</button>
+          </div>
+          <button onclick="fitCamera()" class="cad-btn" style="height:26px; padding:0 7px; font-size:10.5px;">Fit</button>
+        </div>
+      </div>
+
+      <div class="canvas-stage">
+        <canvas id="mineCanvas"></canvas>
+
+        <div id="shiftEventBanner" class="cad-card shift-banner hidden">
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
+            <span id="shiftEventTag" class="mono" style="font-size:9.5px; font-weight:700; color:var(--amber);">SHIFT EVENT</span>
+            <span id="shiftEventTimer" class="mono" style="font-size:9.5px; color:var(--text-muted);">18s</span>
+          </div>
+          <div id="shiftEventText" style="font-weight:600; margin-top:3px; line-height:1.35;">Active shift condition</div>
+        </div>
+
+        <div id="cellHoverTooltip" class="cad-card hover-tooltip mono hidden"></div>
+
+        <div class="cad-card legend-bar mono">
+          <span><i class="legend-dot" style="background:#1e293b;"></i>Crude Oil</span>
+          <span><i class="legend-dot" style="background:#f59e0b;"></i>Native Gold</span>
+          <span><i class="legend-dot" style="background:#06b6d4;"></i>Lithium/Cu</span>
+          <span><i class="legend-dot" style="background:#ef4444;"></i>Methane Pocket</span>
+          <span><i class="legend-dot" style="background:#3b82f6;"></i>Aquifer Seepage</span>
+        </div>
+      </div>
+    </main>
+
+    <!-- RIGHT OPERATIONS PANEL (308PX) -->
+    <aside class="side-column right-ops">
+      <div class="seg-track ops-tabs">
+        <button id="rTabBtn_supply" onclick="setRightTab('supply')" class="seg-btn">
+          Supply (<span id="supplyTotalBadge">8</span>)
+        </button>
+        <button id="rTabBtn_exchange" onclick="setRightTab('exchange')" class="seg-btn active">
+          Exchange
+        </button>
+        <button id="rTabBtn_rd" onclick="setRightTab('rd')" class="seg-btn">
+          R&amp;D (<span id="rdCountBadge">0/5</span>)
+        </button>
+        <button id="rTabBtn_crew" onclick="setRightTab('crew')" class="seg-btn">
+          Crew (<span id="crewTabBadge">2</span>)
+        </button>
+        <button id="rTabBtn_goals" onclick="setRightTab('goals')" class="seg-btn">
+          Goals (<span id="goalsTabBadge">0/5</span>)
+        </button>
+      </div>
+
+      <!-- TAB 1: SUPPLY -->
+      <div id="rightTab_supply" class="cad-card hidden" style="padding:9px; display:flex; flex-direction:column; gap:7px;">
+        <div class="section-header">
+          <span class="section-title" style="color:var(--amber)">Material Supply Room</span>
+          <button id="autoRestockBtn" onclick="toggleAutoRestock()" class="cad-btn mono" style="height:22px; padding:0 7px; font-size:9.5px; font-weight:700;">
+            Auto-Restock: OFF
+          </button>
+        </div>
+        <div style="font-size:10.5px; color:var(--text-secondary); line-height:1.35;">
+          Miners haul crates from this warehouse to build planned supports. If empty, idle miners queue outside and may trigger a union strike.
+        </div>
+        <div id="supplyIdleAlert" class="sub-box hidden" style="background-color:var(--crimson-bg); border-color:var(--crimson-border); color:var(--crimson); font-size:10.5px; font-weight:600;">
+          ⚠ Miners waiting for materials! Restock below immediately.
+        </div>
+        <div id="supplyRoomList" class="section-block"></div>
+      </div>
+
+      <!-- TAB 2: EXCHANGE -->
+      <div id="rightTab_exchange" class="cad-card" style="padding:9px; display:flex; flex-direction:column; gap:7px;">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Spot Commodity Exchange</div>
+            <div class="mono" style="font-size:10px; color:var(--text-secondary)">Tanks: <strong id="storageCapText">0 / 150 units</strong></div>
+          </div>
+          <div style="display:flex; align-items:center; gap:4px;">
+            <button id="upgradeTankBtn" onclick="upgradeStorageTank()" class="cad-btn" style="height:23px; padding:0 6px; font-size:9.5px; color:var(--accent-cyan); font-weight:600;">
+              Tank + ($8k)
+            </button>
+            <button onclick="sellAllCommodities()" class="btn-solid-emerald" style="height:23px; padding:0 7px; font-size:10px;">
+              Sell ($<span id="sellAllTotalSpan">0</span>)
+            </button>
+          </div>
+        </div>
+
+        <div class="sub-box">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:4px;">
+            <div class="seg-track">
+              <button id="chartTab_oil" onclick="setChartAsset('oil')" class="seg-btn mono active" style="height:20px; padding:0 6px; font-size:9.5px;">WTI Oil</button>
+              <button id="chartTab_gold" onclick="setChartAsset('gold')" class="seg-btn mono" style="height:20px; padding:0 6px; font-size:9.5px;">Gold</button>
+              <button id="chartTab_lithium" onclick="setChartAsset('lithium')" class="seg-btn mono" style="height:20px; padding:0 6px; font-size:9.5px;">Lithium</button>
+            </div>
+            <div class="mono" style="font-size:10.5px;">
+              <strong id="activeChartPrice">$83.98/bbl</strong>
+              <span id="activeChartDelta" style="font-size:9.5px; color:var(--emerald); margin-left:2px;">+1.4%</span>
+            </div>
+          </div>
+          <div class="sparkline-box">
+            <canvas id="oilSparkline"></canvas>
+          </div>
+          <div id="refineryBonusBadge" class="mono hidden" style="font-size:9.5px; font-weight:700; color:var(--emerald); margin-top:2px;">
+            ★ Modular Refinery Active: +14% Refined Sale Bonus
+          </div>
+        </div>
+
+        <div class="mono" style="display:flex; flex-direction:column; gap:5px; font-size:10.5px;">
+          <div class="sub-box" style="display:flex; align-items:center; justify-content:space-between; gap:6px;">
+            <div>
+              <strong>WTI Crude:</strong> <strong id="invOilText">0 bbl</strong>
+              <div id="exchOilPrice" style="font-size:9.5px; color:var(--text-muted);">$83.98/bbl</div>
+            </div>
+            <button onclick="sellSingleCommodity('oil')" class="cad-btn" style="height:24px; padding:0 8px; font-size:10px; font-weight:600;">
+              Sell ($<span id="valOilText">0</span>)
+            </button>
+          </div>
+
+          <div class="grid-2">
+            <div class="sub-box" style="display:flex; flex-direction:column; gap:4px;">
+              <div style="display:flex; justify-content:space-between; font-weight:700;">
+                <span style="color:var(--amber)">Gold</span>
+                <span id="exchGoldPrice">$3,535</span>
+              </div>
+              <div>Vault: <strong id="invGoldText">0.0 oz</strong></div>
+              <button onclick="sellSingleCommodity('gold')" class="cad-btn" style="height:23px; font-size:9.5px; font-weight:600;">
+                Sell ($<span id="valGoldText">0</span>)
+              </button>
+            </div>
+            <div class="sub-box" style="display:flex; flex-direction:column; gap:4px;">
+              <div style="display:flex; justify-content:space-between; font-weight:700;">
+                <span style="color:var(--accent-cyan)">Lithium</span>
+                <span id="exchLithPrice">$12,750</span>
+              </div>
+              <div>Vault: <strong id="invLithText">0.0 t</strong></div>
+              <button onclick="sellSingleCommodity('lithium')" class="cad-btn" style="height:23px; font-size:9.5px; font-weight:600;">
+                Sell ($<span id="valLithText">0</span>)
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-block section-divider">
+          <div class="section-title">Forward Futures Contract</div>
+          <div id="futuresContractBox"></div>
+        </div>
+      </div>
+
+      <!-- TAB 3: R&D LAB -->
+      <div id="rightTab_rd" class="cad-card hidden" style="padding:9px; display:flex; flex-direction:column; gap:7px;">
+        <div class="section-header">
+          <span class="section-title" style="color:var(--accent-cyan)">R&amp;D Engineering Tech Lab</span>
+          <span class="mono" style="font-size:9.5px; color:var(--text-muted)">Permanent</span>
+        </div>
+        <div id="rdTechList" class="section-block"></div>
+      </div>
+
+      <!-- TAB 4: CREW -->
+      <div id="rightTab_crew" class="cad-card hidden" style="padding:9px; display:flex; flex-direction:column; gap:7px;">
+        <div class="section-header">
+          <span class="section-title">Workforce &amp; Safety Staff</span>
+          <span id="payrollRateText" class="mono" style="font-size:10px; color:var(--text-secondary)">$90/hr</span>
+        </div>
+
+        <div class="grid-2">
+          <button onclick="hireWorker('miner')" class="cad-btn" style="padding:6px; text-align:left; display:flex; flex-direction:column; gap:2px;">
+            <span style="font-weight:700; color:var(--text-primary);">+ Hire Miner</span>
+            <span class="mono" style="font-size:9.5px; color:var(--emerald);">$1,800 • Hauls &amp; Mines</span>
+          </button>
+          <button onclick="hireWorker('engineer')" class="cad-btn" style="padding:6px; text-align:left; display:flex; flex-direction:column; gap:2px;">
+            <span style="font-weight:700; color:var(--text-primary);">+ Safety Eng.</span>
+            <span class="mono" style="font-size:9.5px; color:var(--accent-cyan);">$3,200 • +FoS &amp; Morale</span>
+          </button>
+        </div>
+
+        <div class="sub-box" style="display:flex; flex-direction:column; gap:4px;">
+          <div style="display:flex; justify-content:space-between; font-size:10.5px;" class="mono">
+            <span>Crew Morale: <strong id="crewMoraleVal" style="color:var(--emerald)">88%</strong></span>
+            <span>Wage: <strong id="crewWageVal">$45/hr</strong></span>
+          </div>
+          <div class="progress-bar-bg">
+            <div id="crewMoraleBar" class="progress-bar-fill" style="width:88%;"></div>
+          </div>
+          <button onclick="issueCrewBonus()" class="cad-btn mono" style="height:23px; font-size:9.5px; font-weight:600; margin-top:2px;">
+            Issue Shift Safety Bonus ($1,200 • +14% Morale)
+          </button>
+        </div>
+
+        <div id="crewRosterList" class="section-block" style="max-height:175px; overflow-y:auto;"></div>
+      </div>
+
+      <!-- TAB 5: GOALS -->
+      <div id="rightTab_goals" class="cad-card hidden" style="padding:9px; display:flex; flex-direction:column; gap:7px;">
+        <div class="section-header">
+          <span class="section-title" style="color:var(--emerald)">Executive IPO Roadmap</span>
+          <span class="mono" style="font-size:10px; font-weight:700;">$1,000,000 Goal</span>
+        </div>
+        <div id="milestonesList" class="section-block"></div>
+      </div>
+
+      <!-- ALWAYS-VISIBLE: MARKET NEWS WIRE -->
+      <div class="cad-card news-wire-card">
+        <div class="section-header">
+          <span class="section-title" style="color:var(--accent-cyan)">Global Commodity News Wire</span>
+          <span class="pulse-dot"></span>
+        </div>
+        <div id="marketNewsList" class="news-list"></div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- ========================================================================
+       3. UNION STRIKE (罢工抗议) 3-ROUND COLLECTIVE BARGAINING MODAL
+       ======================================================================== -->
+  <div id="strikeModal" class="modal-backdrop hidden">
+    <div class="cad-card modal-dialog">
+      <div class="modal-header">
+        <div>
+          <span class="badge-pill" style="background-color:var(--amber);">LABOR WORK STOPPAGE • 罢工抗议</span>
+          <h2 style="margin:6px 0 2px; font-size:16px; font-weight:800;">Miners Union Collective Bargaining Debate</h2>
+          <p id="strikeReasonText" style="margin:0; font-size:12px; color:var(--text-secondary);">
+            Workers halted shaft operations over empty supply room queues and safety conditions.
+          </p>
+        </div>
+        <div class="sub-box mono" style="text-align:right; flex-shrink:0;">
+          <div style="font-size:9.5px; color:var(--text-muted);">UNION PATIENCE</div>
+          <div id="strikePatienceVal" style="font-size:14px; font-weight:800; color:var(--amber);">100%</div>
+        </div>
+      </div>
+
+      <div class="sub-box" style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+        <div>
+          <div style="font-size:12px; font-weight:700;">Union Representative Carlos Mendez (Local 408)</div>
+          <div id="strikeRepQuote" style="font-size:11.5px; color:var(--text-secondary); margin-top:2px;">
+            "Our crew won't go back down the hoist until wages match subsurface risk and supply crates stay stocked!"
+          </div>
+        </div>
+        <div class="mono" style="text-align:right; font-size:11px; flex-shrink:0;">
+          <div>Current: <strong id="strikeCurWage">$45/hr</strong></div>
+          <div style="color:var(--amber);">Demand: <strong id="strikeDemWage">$72/hr</strong></div>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:7px;">
+        <div id="strikeRoundTitle" class="mono" style="font-size:11px; font-weight:700; color:var(--accent-cyan);">
+          ROUND 1 OF 3 — WAGE &amp; HAZARD PAY NEGOTIATION
+        </div>
+        <div id="strikeQuestionText" style="font-size:13px; font-weight:700;">
+          How do you respond to Local 408's hourly wage demand?
+        </div>
+        <div id="strikeOptionsList" style="display:flex; flex-direction:column; gap:7px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       4. 2D SUPERIOR COURTROOM TRIAL MODAL
+       ======================================================================== -->
+  <div id="courtModal" class="modal-backdrop hidden">
+    <div class="cad-card modal-dialog" style="max-width:690px;">
+      <div class="modal-header">
+        <div>
+          <span class="badge-pill" style="background-color:var(--crimson);">SUPERIOR COURT • WRONGFUL DEATH TORT</span>
+          <h2 style="margin:6px 0 2px; font-size:16px; font-weight:800;">Estate of Deceased Miner v. STRATA CORP.</h2>
+          <p id="courtIncidentSummary" style="margin:0; font-size:12px; color:var(--text-secondary);">
+            A shaft collapse occurred while miners were underground without evacuation.
+          </p>
+        </div>
+        <div class="sub-box mono" style="text-align:right; flex-shrink:0;">
+          <div style="font-size:9.5px; color:var(--text-muted);">STATUTORY DAMAGES</div>
+          <div id="courtExposureText" style="font-size:13px; font-weight:800; color:var(--crimson);">$10,000 – $35,000</div>
+        </div>
+      </div>
+
+      <div class="court-canvas-wrap">
+        <canvas id="courtroomCanvas"></canvas>
+      </div>
+
+      <div id="courtCounselStep" class="counsel-grid">
+        <button onclick="chooseLegalCounsel('free')" class="cad-btn option-card-btn" style="padding:11px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; width:100%;">
+            <strong style="font-size:13px; color:var(--text-primary);">Court-Appointed Public Defender</strong>
+            <span class="mono" style="font-size:11px; font-weight:800; padding:2px 6px; border-radius:4px; background:var(--bg-subtle); color:var(--text-primary);">$0 FEE</span>
+          </div>
+          <p style="margin:4px 0 0; font-size:11.5px; color:var(--text-secondary); line-height:1.4;">
+            Hon. Judge Arthur Pendelton will grill you on <strong>3 rigorous mining &amp; tort law questions</strong>. Score <strong>2/3</strong> to win acquittal, or pay <strong>$10k–$100k</strong> in wrongful-death damages.
+          </p>
+        </button>
+
+        <button id="hireEliteCounselBtn" onclick="chooseLegalCounsel('pro')" class="cad-btn option-card-btn" style="padding:11px; border-color:var(--accent-cyan-border);">
+          <div style="display:flex; justify-content:space-between; align-items:center; width:100%;">
+            <strong style="font-size:13px; color:var(--accent-cyan);">Sterling &amp; Vance LLP (Elite Counsel)</strong>
+            <span class="mono" style="font-size:11px; font-weight:800; padding:2px 6px; border-radius:4px; background:var(--accent-cyan-bg); color:var(--accent-cyan);">$10,000</span>
+          </div>
+          <p style="margin:4px 0 0; font-size:11.5px; color:var(--text-secondary); line-height:1.4;">
+            Top corporate defense team files an immediate procedural settlement. Answer <strong>3 casual everyday check-in questions</strong> (all answers accepted) for guaranteed dismissal.
+          </p>
+        </button>
+      </div>
+
+      <div id="courtQuestionStep" class="hidden" style="display:flex; flex-direction:column; gap:8px;">
+        <div style="display:flex; justify-content:space-between; align-items:center;" class="mono">
+          <span id="courtQProgress" style="font-size:11px; font-weight:700; color:var(--accent-cyan);">QUESTION 1 OF 3</span>
+          <span id="courtScoreText" style="font-size:11px; font-weight:700;">Sustained Objections: 0 / 3</span>
+        </div>
+        <div id="courtJudgePrompt" class="sub-box" style="font-size:12.5px; font-weight:700; line-height:1.45;">
+          Judge Arthur Pendelton: "..."
+        </div>
+        <div id="courtAnswersList" style="display:flex; flex-direction:column; gap:6px;"></div>
+        <div id="courtVerdictBox" class="sub-box hidden" style="font-size:12px; line-height:1.45;"></div>
+        <div style="display:flex; justify-content:flex-end;">
+          <button id="courtContinueBtn" onclick="advanceCourtQuestion()" class="btn-solid-cyan hidden" style="height:32px; padding:0 14px; font-size:12px;">
+            Continue →
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       5. $1,000,000 IPO VICTORY MODAL
+       ======================================================================== -->
+  <div id="ipoModal" class="modal-backdrop hidden">
+    <div class="cad-card modal-dialog" style="max-width:520px; text-align:center;">
+      <div>
+        <span class="badge-pill" style="background-color:var(--emerald);">NYSE LISTING BELL • $1,000,000 VALUATION</span>
+        <h2 style="margin:8px 0 4px; font-size:19px; font-weight:800;">STRATA CORP. Initial Public Offering!</h2>
+        <p style="margin:0; font-size:12.5px; color:var(--text-secondary); line-height:1.45;">
+          Your subsurface engineering, structural support discipline, and commodity trading propelled STRATA CORP. past the <strong>$1,000,000</strong> enterprise valuation milestone!
+        </p>
+      </div>
+      <div id="ipoStatsSummary" class="sub-box mono" style="font-size:11.5px; text-align:left; line-height:1.6;"></div>
+      <div style="display:flex; justify-content:center; gap:10px; margin-top:4px;">
+        <button onclick="continueEndlessMode()" class="btn-solid-emerald" style="height:34px; padding:0 16px; font-size:12px;">
+          Continue Sandbox Operations
+        </button>
+        <button onclick="resetCampaign()" class="cad-btn" style="height:34px; padding:0 14px; font-size:12px; font-weight:600;">
+          Start New Campaign
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       6. COMPLETE SIMULATION ENGINE, LAW & STRIKE DATABASES, 60FPS RENDERER
+       ======================================================================== -->
+  <script>
+    const STORAGE_KEY = "strata_corp_v4_pure_css";
+    const GRID_COLS = 24;
+    const GRID_ROWS = 18;
+    const CELL_M = 2.5;
+
+    const STRATA_LAYERS = [
+      { maxRow: 3,  name: "Topsoil & Clay",         density: 18, colorDay: "#c29b61", colorNight: "#4a3723" },
+      { maxRow: 7,  name: "Sedimentary Sandstone",  density: 24, colorDay: "#b8844c", colorNight: "#3f2c1b" },
+      { maxRow: 11, name: "Fractured Shale",        density: 31, colorDay: "#64748b", colorNight: "#232c3d" },
+      { maxRow: 14, name: "Aquifer Limestone",      density: 36, colorDay: "#4b6b88", colorNight: "#1c2d42" },
+      { maxRow: 17, name: "Deep Basalt & Granite",  density: 44, colorDay: "#334155", colorNight: "#151b26" }
+    ];
+
+    const PARCELS = {
+      p1: { id: "p1", name: "Permian Basin Flats", cost: 0, entryCol: 10, supplyCol: 5, tankCol: 16, loadMult: 1.0, yieldMult: 1.0, oilCount: 7, goldCount: 4, lithCount: 4 },
+      p2: { id: "p2", name: "Sierra Madre Foothills", cost: 180000, entryCol: 11, supplyCol: 5, tankCol: 17, loadMult: 1.28, yieldMult: 1.75, oilCount: 6, goldCount: 7, lithCount: 5 },
+      p3: { id: "p3", name: "Deep Crust Rift Zone", cost: 420000, entryCol: 12, supplyCol: 6, tankCol: 18, loadMult: 1.55, yieldMult: 2.65, oilCount: 8, goldCount: 7, lithCount: 8 }
+    };
+
+    const SUPPORT_MATERIALS = {
+      wood: { id: "wood", name: "Timber Cribbing", short: "Timber Cribbing", crateCost: 120, rdCost: 0, capacityKn: 180, vibeDamp: 1.0, waterImmune: false, colorDay: "#b45309", colorNight: "#f59e0b", unlockDesc: "Starter Framing" },
+      concrete: { id: "concrete", name: "Reinforced Concrete", short: "Reinforced Concrete", crateCost: 280, rdCost: 4500, capacityKn: 460, vibeDamp: 0.85, waterImmune: false, colorDay: "#475569", colorNight: "#cbd5e1", unlockDesc: "Mid-Depth Framing" },
+      steel: { id: "steel", name: "Structural Steel I-Beam", short: "Steel I-Beam", crateCost: 540, rdCost: 14000, capacityKn: 950, vibeDamp: 0.72, waterImmune: false, colorDay: "#0284c7", colorNight: "#38bdf8", unlockDesc: "Deep Shaft Support" },
+      hydraulic: { id: "hydraulic", name: "Hydraulic Roof Shoring", short: "Hydraulic Shoring", crateCost: 980, rdCost: 32000, capacityKn: 1650, vibeDamp: 0.55, waterImmune: false, colorDay: "#059669", colorNight: "#10b981", unlockDesc: "-45% Drill Vibration" },
+      titanium: { id: "titanium", name: "Titanium-Composite Arch", short: "Titanium Arch", crateCost: 1850, rdCost: 68000, capacityKn: 3200, vibeDamp: 0.42, waterImmune: true, colorDay: "#7c3aed", colorNight: "#a78bfa", unlockDesc: "Waterproof • 3,200 kN" }
+    };
+
+    const DRILL_RIGS = [
+      { id: "core", name: "Core Bore Rig", cost: 0, speed: 1.35, vibe: 1.0, sonarR: 2, extractRate: 1.0, desc: "Starter • 1.0x vibe" },
+      { id: "rotary", name: "Rotary Percussion Drill", cost: 11500, speed: 2.1, vibe: 1.35, sonarR: 3, extractRate: 1.65, desc: "Fast • 1.35x vibe" },
+      { id: "diamond", name: "Directional Diamond Rig", cost: 24000, speed: 2.9, vibe: 0.85, sonarR: 4, extractRate: 2.45, desc: "Low 0.85x vibe" },
+      { id: "plasma", name: "Deep-Crust Plasma Bore", cost: 48000, speed: 4.2, vibe: 0.55, sonarR: 5, extractRate: 3.7, desc: "Ultra-fast • 0.55x vibe" }
+    ];
+
+    const THROTTLE_MODES = {
+      eco:  { speedMult: 0.72, vibeMult: 0.58, wearMult: 0.48 },
+      std:  { speedMult: 1.00, vibeMult: 1.00, wearMult: 1.00 },
+      over: { speedMult: 1.48, vibeMult: 1.55, wearMult: 1.95 }
+    };
+
+    const STORAGE_TIERS = [
+      { cap: 150, upgradeCost: 8000 },
+      { cap: 400, upgradeCost: 22000 },
+      { cap: 1000, upgradeCost: 0 }
+    ];
+
+    const RD_TECH_UPGRADES = [
+      { id: "gpr_v2", name: "Ground-Penetrating Radar (GPR v2)", cost: 9500, badge: "Sonar 2→4 Cells", desc: "Expands Seismic Sonar Ping radius from 2 to 4 cells and uncovers deep anomalies faster." },
+      { id: "pneumatic_chutes", name: "Automated Pneumatic Ore Chutes", cost: 16500, badge: "-45% Haul Time", desc: "Cuts miner hauling round-trip time by 45% and adds passive trickle extraction on supported ore blocks." },
+      { id: "pdc_bits", name: "Poly-Crystalline Diamond (PDC) Bits", cost: 24000, badge: "-50% Wear • -35% Vibe", desc: "Cuts drill bit wear rate by 50% and reduces drill vibration stress on nearby shafts by 35%." },
+      { id: "prestressed_framing", name: "Pre-Stressed Modular Framing", cost: 34000, badge: "+40% Build • +15% FoS", desc: "Speeds up support construction by 40% and adds +15% structural FoS capacity across all installed supports." },
+      { id: "modular_refinery", name: "On-Site Modular Refinery", cost: 52000, badge: "+50% Tank • +14% Price", desc: "Expands storage tank capacity by +50% and adds a +14% refined-grade price premium on all sales." }
+    ];
+
+    const SHIFT_EVENTS = [
+      {
+        id: "gas_surge",
+        tag: "HIGH-PRESSURE GAS POCKET",
+        color: "var(--crimson)",
+        text: "Fractured Shale methane pressure spiked! Install Ventilation Scrubber Ducts in deep drifts.",
+        apply(p) { p.methanePockets.forEach(mp => { mp.active = true; mp.revealed = true; }); }
+      },
+      {
+        id: "bonanza_vein",
+        tag: "BONANZA VEIN STRIKE",
+        color: "var(--emerald)",
+        text: "Geological survey confirmed a high-grade subsurface vein (+35% reserve boost)!",
+        apply(p) {
+          const target = p.deposits.find(d => d.amount > 0);
+          if (target) { target.revealed = true; target.grade = "Bonanza"; target.amount = Math.round(target.amount * 1.35); }
+        }
+      },
+      {
+        id: "aquifer_surge",
+        tag: "FLASH AQUIFER SURGE",
+        color: "var(--accent-cyan)",
+        text: "Groundwater seepage surged in Aquifer Limestone! Deploy Dewatering Sump Pumps.",
+        apply(p) { p.aquiferZones.forEach(aq => { aq.active = true; aq.revealed = true; }); }
+      },
+      {
+        id: "refinery_spike",
+        tag: "REFINERY DEMAND SPIKE",
+        color: "var(--emerald)",
+        text: "Gulf Coast & EV battery buyers bid up WTI Crude (+11%) and Lithium (+13%) spot prices!",
+        apply() {
+          state.market.oilPrev = state.market.oilPrice;
+          state.market.oilPrice = +(state.market.oilPrice * 1.11).toFixed(2);
+          state.market.oilHistory.push(state.market.oilPrice);
+          state.market.lithiumPrev = state.market.lithiumPrice;
+          state.market.lithiumPrice = Math.round(state.market.lithiumPrice * 1.13);
+          state.market.lithiumHistory.push(state.market.lithiumPrice);
+        }
+      }
+    ];
+
+    const NEWS_WIRE_EVENTS = [
+      { tag: "OPEC+ SUPPLY", color: "var(--emerald)", headline: "OPEC+ extends voluntary output curbs; WTI Crude jumps +9%.", oilMult: 1.09, goldMult: 1.01, lithMult: 1.0 },
+      { tag: "EV BATTERY", color: "var(--accent-cyan)", headline: "North American gigafactories sign spot Lithium deals (+12%).", oilMult: 0.99, goldMult: 1.0, lithMult: 1.12 },
+      { tag: "BULLION SAFE HAVEN", color: "var(--amber)", headline: "Central bank reserve buying lifts Spot Gold (+7%).", oilMult: 1.01, goldMult: 1.07, lithMult: 1.01 },
+      { tag: "REFINERY OUTAGE", color: "var(--emerald)", headline: "Gulf Coast cracker maintenance tightens crude inventories (+8%).", oilMult: 1.08, goldMult: 1.0, lithMult: 0.99 },
+      { tag: "SPR RELEASE", color: "var(--crimson)", headline: "Emergency Strategic Petroleum Reserve auction cools WTI (-8%).", oilMult: 0.92, goldMult: 1.02, lithMult: 1.0 }
+    ];
+
+    const HARD_LAW_QUESTIONS = [
+      {
+        q: "Under common-law tort doctrine, when a mine roof collapses despite being under the employer's exclusive control and such collapses do not ordinarily occur without negligence, which evidentiary doctrine shifts the burden of explanation to STRATA CORP.?",
+        opts: [
+          "Res ipsa loquitur ('the thing speaks for itself')",
+          "Caveat emptor ('let the buyer beware')",
+          "De minimis non curat lex ('the law ignores trifles')"
+        ],
+        correct: 0
+      },
+      {
+        q: "Under 30 CFR Part 57 (MSHA Underground Metal & Nonmetal Safety Standards), what is an operator's legal duty regarding ground support in active travelways?",
+        opts: [
+          "Ground support may be deferred until ore extraction reaches 80% completion",
+          "Ground conditions must be tested and supported before any work or travel is permitted beneath unsupported roof",
+          "Oral warnings to miners waive statutory ground-control requirements"
+        ],
+        correct: 1
+      },
+      {
+        q: "In wrongful-death tort litigation, why can an employer NOT invoke 'assumption of risk' when a miner is killed by an under-engineered timber support failing below FoS 1.0?",
+        opts: [
+          "Miners forfeit all tort remedies upon signing an hourly employment contract",
+          "Assumption of risk only applies to surface office personnel",
+          "Employees do not assume risks created by an employer's breach of its non-delegable statutory duty to provide a safe workplace"
+        ],
+        correct: 2
+      },
+      {
+        q: "Under the Rylands v. Fletcher strict-liability standard applied to ultrahazardous subsurface blasting and high-vibration drilling, what must the plaintiff prove?",
+        opts: [
+          "Only that the abnormally dangerous activity proximately caused the fatal harm, even if reasonable care was attempted",
+          "That the CEO personally operated the drill throttle at the moment of collapse",
+          "That the company earned over $500,000 in gross quarterly revenue"
+        ],
+        correct: 0
+      },
+      {
+        q: "What distinguishes 'compensatory wrongful-death damages' from 'punitive damages' when a mining firm ignores known FoS < 1.0 warnings?",
+        opts: [
+          "Compensatory damages are paid to the court clerk; punitive damages fund union dues",
+          "Compensatory damages reimburse lost financial support and funeral costs; punitive damages punish willful or reckless disregard for human life",
+          "There is no legal distinction under federal tort law"
+        ],
+        correct: 1
+      },
+      {
+        q: "Under proximate causation ('but-for' and foreseeability analysis), if a drill rig's Overdrive vibration destabilizes an adjacent Timber Cribbing cell, is the collapse legally foreseeable?",
+        opts: [
+          "No, because subterranean rock strata are legally classified as acts of God",
+          "Only if the drill bit physically touched the timber beam",
+          "Yes, because induced seismic vibration within the zone of influence is a natural and foreseeable engineering consequence"
+        ],
+        correct: 2
+      },
+      {
+        q: "Under the 'Eggshell Skull' (thin-skull) rule in tort law, if a cave-in aggravates a miner's pre-existing respiratory condition, how is STRATA CORP.'s liability affected?",
+        opts: [
+          "The defendant takes the victim as found and is liable for the full extent of the resulting injury or death",
+          "Liability is reduced by 50% automatically",
+          "The claim is dismissed for pre-existing condition"
+        ],
+        correct: 0
+      },
+      {
+        q: "What is 'spoliation of evidence' in the aftermath of an underground shaft failure?",
+        opts: [
+          "Filing a motion for summary judgment prior to discovery",
+          "Destroying or salvaging collapsed structural timbers and drill logs before MSHA and plaintiff experts inspect the scene",
+          "Calling an expert structural engineer to testify"
+        ],
+        correct: 1
+      },
+      {
+        q: "Under vicarious liability (respondeat superior), is STRATA CORP. liable if a shift supervisor orders miners into an unventilated methane pocket during a rush order?",
+        opts: [
+          "No, corporations are immune from supervisor torts",
+          "Only if the supervisor was a board shareholder",
+          "Yes, because the supervisor acted within the scope of employment furthering the employer's business"
+        ],
+        correct: 2
+      },
+      {
+        q: "In a comparative-negligence jurisdiction, if a jury finds STRATA CORP. 85% at fault for inadequate shoring and a miner 15% at fault, how are $100,000 damages apportioned?",
+        opts: [
+          "STRATA CORP. pays $85,000 (85% of total damages)",
+          "STRATA CORP. pays $0 under pure contributory bar",
+          "STRATA CORP. pays $150,000"
+        ],
+        correct: 0
+      }
+    ];
+
+    const CASUAL_PRO_QUESTIONS = [
+      {
+        q: "Senior Partner Vance leans over and whispers: 'Motion to dismiss is already drafted. Just tell the Judge what you had for breakfast before court today!'",
+        opts: [
+          "An espresso and a toasted sourdough bagel while reviewing commodity charts.",
+          "Two scrambled eggs, turkey bacon, and black coffee.",
+          "Skipped breakfast—straight to the trading floor at 6:00 AM."
+        ]
+      },
+      {
+        q: "Judge Pendelton nods pleasantly while signing the stipulation: 'Counsel informs me you're expanding operations. How do you prefer your coffee during long shifts?'",
+        opts: [
+          "Dark roast, black, no sugar—keeps focus sharp on Factor of Safety telemetry.",
+          "Iced oat latte with a double shot.",
+          "Green tea in the afternoon so I don't over-throttle the drill rigs."
+        ]
+      },
+      {
+        q: "Sterling & Vance LLP hands over the sealed dismissal order: 'One last formality for the court record—what's your first move once we step out of the courthouse?'",
+        opts: [
+          "Upgrade our underground roof shoring and restock the Material Supply Room.",
+          "Check WTI Crude Oil spot prices and lock in a Futures Contract.",
+          "Give our mining crew a well-earned safety bonus."
+        ]
+      }
+    ];
+
+    let state = {};
+
+    function generateParcelState(pid) {
+      const cfg = PARCELS[pid];
+      const cells = Array.from({ length: GRID_ROWS }, () => Array(GRID_COLS).fill(null));
+
+      for (let r = 0; r <= 2; r++) {
+        cells[r][cfg.entryCol] = {
+          mat: "wood",
+          status: "built",
+          buildPct: 100,
+          fos: 2.6,
+          loadKn: 45,
+          corrosionKn: 0,
+          utility: null,
+          assignedId: null
+        };
+      }
+
+      const deposits = [];
+      const used = new Set();
+      for (let r = 0; r <= 3; r++) used.add(`${r},${cfg.entryCol}`);
+
+      function placeDeposits(type, count, minR, maxR, baseAmt, unit) {
+        let placed = 0, tries = 0;
+        while (placed < count && tries < 300) {
+          tries++;
+          const r = minR + Math.floor(Math.random() * (maxR - minR + 1));
+          const c = 1 + Math.floor(Math.random() * (GRID_COLS - 2));
+          const key = `${r},${c}`;
+          if (used.has(key)) continue;
+          used.add(key);
+          const isBonanza = Math.random() < 0.28;
+          deposits.push({
+            id: `dep_${type}_${placed}_${Math.floor(Math.random() * 9999)}`,
+            type,
+            unit,
+            row: r,
+            col: c,
+            grade: isBonanza ? "Bonanza" : "Commercial",
+            amount: Math.round(baseAmt * cfg.yieldMult * (isBonanza ? 1.55 : 1.0)),
+            revealed: r <= 3 && Math.abs(c - cfg.entryCol) <= 2
+          });
+          placed++;
+        }
+      }
+
+      placeDeposits("oil", cfg.oilCount, 3, 13, 68, "bbl");
+      placeDeposits("gold", cfg.goldCount, 6, 17, 7.5, "oz");
+      placeDeposits("lithium", cfg.lithCount, 9, 17, 4.8, "t");
+
+      const methanePockets = [];
+      for (let i = 0; i < 4; i++) {
+        const r = 8 + Math.floor(Math.random() * 4);
+        const c = 2 + Math.floor(Math.random() * (GRID_COLS - 4));
+        if (Math.abs(c - cfg.entryCol) > 1) {
+          methanePockets.push({ row: r, col: c, active: true, revealed: false });
+        }
+      }
+
+      const aquiferZones = [];
+      for (let i = 0; i < 4; i++) {
+        const r = 12 + Math.floor(Math.random() * 3);
+        const c = 2 + Math.floor(Math.random() * (GRID_COLS - 4));
+        if (Math.abs(c - cfg.entryCol) > 1) {
+          aquiferZones.push({ row: r, col: c, active: true, revealed: false });
+        }
+      }
+
+      return {
+        cells,
+        deposits,
+        methanePockets,
+        aquiferZones,
+        sonarPulses: [],
+        hoistRow: 0,
+        drill: {
+          col: cfg.entryCol + 3,
+          currentRow: 0,
+          targetRow: 6,
+          running: true,
+          bitIntegrity: 100,
+          pulseTimer: 0
+        }
+      };
+    }
+
+    function generateFuturesOffer() {
+      const types = [
+        { type: "oil", unit: "bbl", qty: 75, price: Math.round(state.market.oilPrice * 1.15), bonus: 2400 },
+        { type: "gold", unit: "oz", qty: 12, price: Math.round(state.market.goldPrice * 1.12), bonus: 3200 },
+        { type: "lithium", unit: "t", qty: 7, price: Math.round(state.market.lithiumPrice * 1.15), bonus: 4100 }
+      ];
+      const pick = types[Math.floor(Math.random() * types.length)];
+      return {
+        id: `fut_${Date.now()}`,
+        type: pick.type,
+        unit: pick.unit,
+        qty: pick.qty,
+        contractPrice: pick.price,
+        bonus: pick.bonus,
+        timeLeft: 95
+      };
+    }
+
+    function initFreshCampaign() {
+      state = {
+        darkMode: false,
+        simSpeed: 1,
+        emergencyEvac: false,
+        rightTab: "exchange",
+        sfxEnabled: true,
+
+        cash: 68000,
+        totalSales: 0,
+        ipoShown: false,
+        endlessMode: false,
+
+        unlockedParcels: { p1: true, p2: false, p3: false },
+        currentParcelId: "p1",
+        parcels: {},
+
+        unlockedSupports: { wood: true, concrete: false, steel: false, hydraulic: false, titanium: false },
+        selectedSupport: "wood",
+        activeTool: "blueprint",
+
+        unlockedRigs: { core: true, rotary: false, diamond: false, plasma: false },
+        activeRigId: "core",
+        drillThrottle: "std",
+
+        rdLab: {
+          gpr_v2: false,
+          pneumatic_chutes: false,
+          pdc_bits: false,
+          prestressed_framing: false,
+          modular_refinery: false
+        },
+
+        safety: {
+          rating: "A+",
+          accidents: 0,
+          grantTimer: 0
+        },
+
+        shiftEvent: {
+          current: null,
+          timer: 16,
+          remaining: 0
+        },
+
+        supplyRoom: { wood: 8, concrete: 0, steel: 0, hydraulic: 0, titanium: 0 },
+        autoRestock: false,
+        storageTierIdx: 0,
+        inventory: { oil: 0, gold: 0, lithium: 0 },
+
+        market: {
+          selectedChart: "oil",
+          oilPrice: 83.98,
+          oilPrev: 82.85,
+          oilHistory: [80.9, 81.4, 82.1, 82.6, 82.3, 82.85, 83.5, 83.98],
+          goldPrice: 3535,
+          goldPrev: 3498,
+          goldHistory: [3460, 3475, 3490, 3485, 3502, 3498, 3520, 3535],
+          lithiumPrice: 12750,
+          lithiumPrev: 12580,
+          lithiumHistory: [12400, 12460, 12520, 12490, 12610, 12580, 12690, 12750],
+          newsTimer: 0,
+          newsFeed: [
+            { time: "09:15", tag: "WTI CRUDE", color: "var(--emerald)", headline: "WTI Crude Oil settles at $83.98/bbl amid tight Q4 refinery utilization." },
+            { time: "08:40", tag: "METALS DESK", color: "var(--amber)", headline: "Spot Gold holds $3,535/oz; Lithium Carbonate trades at $12,750/ton." }
+          ]
+        },
+
+        futures: {
+          activeContract: null,
+          completedCount: 0
+        },
+
+        milestones: {
+          m1_sonar: false,
+          m2_deep: false,
+          m3_futures: false,
+          m4_parcel2: false,
+          m5_ipo: false
+        },
+
+        miners: [],
+        wagePerHr: 45,
+        morale: 88,
+        payrollAccum: 0,
+        strikesCleared: 0,
+        strike: { active: false, reason: "", round: 0, patience: 100, demandWage: 72 },
+
+        lawsuitsCleared: 0,
+        court: {
+          active: false,
+          step: "counsel",
+          counselType: null,
+          incidentText: "",
+          minDmg: 10000,
+          maxDmg: 35000,
+          questions: [],
+          qIdx: 0,
+          score: 0,
+          answered: false
+        }
+      };
+
+      state.parcels.p1 = generateParcelState("p1");
+      state.futures.activeContract = generateFuturesOffer();
+      addWorkerToRoster("J. Kowalski", "miner");
+      addWorkerToRoster("M. Delgado", "miner");
+      saveToLocalStorage();
+    }
+
+    function saveToLocalStorage() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch (e) {}
+    }
+
+    function loadFromLocalStorage() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (parsed && parsed.parcels && parsed.market) {
+            state = parsed;
+            if (!state.parcels[state.currentParcelId]) {
+              state.parcels[state.currentParcelId] = generateParcelState(state.currentParcelId);
+            }
+            return;
+          }
+        }
+      } catch (e) {}
+      initFreshCampaign();
+    }
+
+    function getParcel() {
+      if (!state.parcels[state.currentParcelId]) {
+        state.parcels[state.currentParcelId] = generateParcelState(state.currentParcelId);
+      }
+      return state.parcels[state.currentParcelId];
+    }
+
+    let audioCtx = null;
+    function playSfx(type) {
+      if (!state.sfxEnabled) return;
+      try {
+        const AudioCtor = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtor) return;
+        if (!audioCtx) audioCtx = new AudioCtor();
+        if (audioCtx.state === "suspended") audioCtx.resume();
+
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        if (type === "sonar") {
+          osc.type = "sine";
+          osc.frequency.setValueAtTime(740, now);
+          osc.frequency.exponentialRampToValueAtTime(280, now + 0.34);
+          gain.gain.setValueAtTime(0.08, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+          osc.start(now);
+          osc.stop(now + 0.36);
+        } else if (type === "cash") {
+          osc.type = "triangle";
+          osc.frequency.setValueAtTime(880, now);
+          osc.frequency.setValueAtTime(1318.5, now + 0.08);
+          gain.gain.setValueAtTime(0.08, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.28);
+          osc.start(now);
+          osc.stop(now + 0.29);
+        } else if (type === "build") {
+          osc.type = "triangle";
+          osc.frequency.setValueAtTime(230, now);
+          osc.frequency.exponentialRampToValueAtTime(115, now + 0.09);
+          gain.gain.setValueAtTime(0.06, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
+          osc.start(now);
+          osc.stop(now + 0.11);
+        } else if (type === "rd") {
+          osc.type = "sine";
+          osc.frequency.setValueAtTime(523.25, now);
+          osc.frequency.setValueAtTime(659.25, now + 0.08);
+          osc.frequency.setValueAtTime(783.99, now + 0.16);
+          gain.gain.setValueAtTime(0.08, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.36);
+          osc.start(now);
+          osc.stop(now + 0.37);
+        } else if (type === "alarm") {
+          osc.type = "sawtooth";
+          osc.frequency.setValueAtTime(160, now);
+          osc.frequency.linearRampToValueAtTime(110, now + 0.38);
+          gain.gain.setValueAtTime(0.09, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+          osc.start(now);
+          osc.stop(now + 0.41);
+        }
+      } catch (e) {}
+    }
+
+    function toggleSfx() {
+      state.sfxEnabled = !state.sfxEnabled;
+      document.getElementById("sfxToggleBtn").classList.toggle("active", state.sfxEnabled);
+      if (state.sfxEnabled) playSfx("build");
+      showToast("Industrial SFX", state.sfxEnabled ? "Web Audio API SFX enabled" : "Audio muted", "var(--accent-cyan)");
+    }
+
+    let toastTimeout = null;
+    function showToast(title, sub, color = "var(--accent-cyan)") {
+      const el = document.getElementById("toastBanner");
+      document.getElementById("toastTitle").textContent = title;
+      document.getElementById("toastSub").textContent = sub;
+      document.getElementById("toastDot").style.backgroundColor = color;
+      el.classList.add("show");
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => el.classList.remove("show"), 2700);
+    }
+
+    function setTheme(isDark) {
+      state.darkMode = !!isDark;
+      document.body.classList.toggle("dark-mode", state.darkMode);
+      document.getElementById("themeDayBtn").classList.toggle("active", !state.darkMode);
+      document.getElementById("themeNightBtn").classList.toggle("active", state.darkMode);
+      markTerrainCacheDirty();
+      saveToLocalStorage();
+    }
+
+    function setSimSpeed(spd) {
+      state.simSpeed = spd;
+      [0, 1, 2, 4].forEach(s => {
+        const b = document.getElementById(`spdBtn_${s}`);
+        if (b) b.classList.toggle("active", s === spd);
+      });
+    }
+
+    function toggleEmergencyEvacuate() {
+      state.emergencyEvac = !state.emergencyEvac;
+      const btn = document.getElementById("evacBtn");
+      const txt = document.getElementById("evacBtnText");
+      btn.classList.toggle("danger-active", state.emergencyEvac);
+      txt.textContent = state.emergencyEvac ? "EVACUATING!" : "Evacuate";
+      if (state.emergencyEvac) {
+        playSfx("alarm");
+        showToast("EMERGENCY EVACUATION ACTIVE", "All underground miners ascending to surface hoist!", "var(--crimson)");
+      } else {
+        showToast("All Clear Issued", "Miners resuming underground construction & extraction", "var(--emerald)");
+      }
+    }
+
+    function setActiveTool(tool) {
+      state.activeTool = tool;
+      ["blueprint", "sonar", "drill", "demolish", "vent", "pump"].forEach(t => {
+        const b = document.getElementById(`toolBtn_${t}`);
+        if (b) b.classList.toggle("active", t === tool);
+      });
+      updateContextBar();
+      syncAllUI();
+    }
+
+    function handleSupportClick(matId) {
+      const m = SUPPORT_MATERIALS[matId];
+      if (!m) return;
+      if (state.unlockedSupports[matId]) {
+        state.selectedSupport = matId;
+        setActiveTool("blueprint");
+        return;
+      }
+      if (state.cash < m.rdCost) {
+        showToast("Insufficient R&D Funds", `Need $${m.rdCost.toLocaleString()} to unlock ${m.name}`, "var(--crimson)");
+        return;
+      }
+      state.cash -= m.rdCost;
+      state.unlockedSupports[matId] = true;
+      state.selectedSupport = matId;
+      state.supplyRoom[matId] += 4;
+      setActiveTool("blueprint");
+      playSfx("rd");
+      showToast(`Unlocked ${m.name}`, `Includes +4 starter crates in Supply Room`, "var(--emerald)");
+    }
+
+    function setDrillThrottle(mode) {
+      state.drillThrottle = mode;
+      ["eco", "std", "over"].forEach(m => {
+        const b = document.getElementById(`throtBtn_${m}`);
+        if (b) b.classList.toggle("active", m === mode);
+      });
+    }
+
+    function toggleDrillRunning() {
+      const p = getParcel();
+      p.drill.running = !p.drill.running;
+      document.getElementById("toggleDrillActiveBtn").textContent = p.drill.running ? "Rig: ON" : "Rig: OFF";
+    }
+
+    function repairDrillBit() {
+      const p = getParcel();
+      if (p.drill.bitIntegrity >= 98) {
+        showToast("Bit Optimal", "Drill bit is already at peak integrity", "var(--emerald)");
+        return;
+      }
+      if (state.cash < 600) {
+        showToast("Insufficient Cash", "Need $600 to replace drill bit", "var(--crimson)");
+        return;
+      }
+      state.cash -= 600;
+      p.drill.bitIntegrity = 100;
+      playSfx("build");
+      syncAllUI();
+      showToast("Drill Bit Replaced (-$600)", "Bit integrity restored to 100%", "var(--emerald)");
+    }
+
+    function handleRigClick(rigId) {
+      const rig = DRILL_RIGS.find(r => r.id === rigId);
+      if (!rig) return;
+      if (state.unlockedRigs[rigId]) {
+        state.activeRigId = rigId;
+        syncAllUI();
+        showToast("Active Rig Switched", rig.name, "var(--amber)");
+        return;
+      }
+      if (state.cash < rig.cost) {
+        showToast("Insufficient Capital", `Need $${rig.cost.toLocaleString()} to purchase ${rig.name}`, "var(--crimson)");
+        return;
+      }
+      state.cash -= rig.cost;
+      state.unlockedRigs[rigId] = true;
+      state.activeRigId = rigId;
+      getParcel().drill.bitIntegrity = 100;
+      playSfx("rd");
+      syncAllUI();
+      showToast("Drill Rig Upgraded!", `${rig.name} deployed on surface derrick`, "var(--emerald)");
+    }
+
+    function restockMaterial(matId, qty) {
+      const m = SUPPORT_MATERIALS[matId];
+      if (!m || !state.unlockedSupports[matId]) return;
+      const totalCost = m.crateCost * qty;
+      if (state.cash < totalCost) {
+        showToast("Insufficient Cash", `Need $${totalCost.toLocaleString()} for ${qty} crates`, "var(--crimson)");
+        return;
+      }
+      state.cash -= totalCost;
+      state.supplyRoom[matId] += qty;
+      playSfx("build");
+      syncAllUI();
+    }
+
+    function toggleAutoRestock() {
+      state.autoRestock = !state.autoRestock;
+      syncAllUI();
+      showToast("Warehouse Auto-Restock", state.autoRestock ? "Automatically buys 3 crates when unlocked stock hits 0" : "Auto-Restock disabled", "var(--accent-cyan)");
+    }
+
+    function setRightTab(tab) {
+      state.rightTab = tab;
+      ["supply", "exchange", "rd", "crew", "goals"].forEach(t => {
+        document.getElementById(`rTabBtn_${t}`).classList.toggle("active", t === tab);
+        document.getElementById(`rightTab_${t}`).classList.toggle("hidden", t !== tab);
+      });
+      if (tab === "exchange") renderOilSparkline();
+    }
+
+    function setChartAsset(asset) {
+      state.market.selectedChart = asset;
+      ["oil", "gold", "lithium"].forEach(a => {
+        document.getElementById(`chartTab_${a}`).classList.toggle("active", a === asset);
+      });
+      syncAllUI();
+    }
+
+    function purchaseRdUpgrade(techId) {
+      const tech = RD_TECH_UPGRADES.find(t => t.id === techId);
+      if (!tech || state.rdLab[techId]) return;
+      if (state.cash < tech.cost) {
+        showToast("Insufficient R&D Funds", `Need $${tech.cost.toLocaleString()} to research ${tech.name}`, "var(--crimson)");
+        return;
+      }
+      state.cash -= tech.cost;
+      state.rdLab[techId] = true;
+      playSfx("rd");
+      syncAllUI();
+      showToast(`R&D Researched: ${tech.name}`, tech.badge, "var(--emerald)");
+    }
+
+    const WORKER_NAMES = ["R. Vance", "K. Okafor", "T. Lindqvist", "S. Al-Mansoor", "D. Petrova", "L. Chen", "H. Morales", "B. Gallagher"];
+    function addWorkerToRoster(customName, role = "miner") {
+      const cfg = PARCELS[state.currentParcelId];
+      const name = customName || WORKER_NAMES[state.miners.length % WORKER_NAMES.length];
+      state.miners.push({
+        id: `w_${Date.now()}_${Math.floor(Math.random() * 9999)}`,
+        name,
+        role,
+        col: cfg.supplyCol,
+        row: -0.35,
+        state: "IDLE_SURFACE",
+        carryingMat: null,
+        carryingOre: null,
+        targetCell: null,
+        targetDepositId: null,
+        waitTimer: 0
+      });
+    }
+
+    function hireWorker(role) {
+      const cost = role === "engineer" ? 3200 : 1800;
+      if (state.miners.length >= 10) {
+        showToast("Roster Full", "Maximum 10 subsurface staff per parcel", "var(--amber)");
+        return;
+      }
+      if (state.cash < cost) {
+        showToast("Insufficient Cash", `Need $${cost.toLocaleString()} hiring bonus`, "var(--crimson)");
+        return;
+      }
+      state.cash -= cost;
+      addWorkerToRoster(null, role);
+      playSfx("build");
+      syncAllUI();
+      showToast(role === "engineer" ? "Safety Engineer Hired" : "Miner Hired", "Crew member reported to surface hoist", "var(--emerald)");
+    }
+
+    function issueCrewBonus() {
+      if (state.cash < 1200) {
+        showToast("Insufficient Cash", "Need $1,200 for crew safety bonus", "var(--crimson)");
+        return;
+      }
+      state.cash -= 1200;
+      state.morale = Math.min(100, state.morale + 14);
+      playSfx("cash");
+      syncAllUI();
+      showToast("Safety Bonus Distributed (-$1,200)", `Crew morale boosted to ${Math.round(state.morale)}%`, "var(--emerald)");
+    }
+
+    function handleParcelSelectChange(pid) {
+      if (state.unlockedParcels[pid]) {
+        state.currentParcelId = pid;
+        const cfg = PARCELS[pid];
+        state.miners.forEach(m => {
+          m.col = cfg.supplyCol;
+          m.row = -0.35;
+          m.state = "IDLE_SURFACE";
+          m.carryingMat = null;
+          m.carryingOre = null;
+          m.targetCell = null;
+        });
+        markTerrainCacheDirty();
+        syncAllUI();
+        fitCamera();
+        return;
+      }
+
+      const cfg = PARCELS[pid];
+      if (state.cash < cfg.cost) {
+        document.getElementById("parcelSelect").value = state.currentParcelId;
+        showToast("Capital Required", `Need $${cfg.cost.toLocaleString()} cash to acquire ${cfg.name}`, "var(--crimson)");
+        return;
+      }
+      state.cash -= cfg.cost;
+      state.unlockedParcels[pid] = true;
+      state.currentParcelId = pid;
+      markTerrainCacheDirty();
+      checkMilestones();
+      syncAllUI();
+      fitCamera();
+      playSfx("cash");
+      showToast("Parcel Acquired!", `${cfg.name} unlocked with richer deep reserves!`, "var(--emerald)");
+    }
+
+    function deployStarterDrift() {
+      const p = getParcel();
+      const cfg = PARCELS[state.currentParcelId];
+      let planned = 0;
+      for (let r = 3; r <= 5; r++) {
+        if (!p.cells[r][cfg.entryCol]) {
+          p.cells[r][cfg.entryCol] = {
+            mat: "wood", status: "planned", buildPct: 0, fos: 2.0, loadKn: 60, corrosionKn: 0, utility: null, assignedId: null
+          };
+          planned++;
+        }
+      }
+      for (let c = cfg.entryCol - 2; c <= cfg.entryCol + 2; c++) {
+        if (c >= 0 && c < GRID_COLS && !p.cells[5][c]) {
+          p.cells[5][c] = {
+            mat: "wood", status: "planned", buildPct: 0, fos: 1.9, loadKn: 65, corrosionKn: 0, utility: null, assignedId: null
+          };
+          planned++;
+        }
+      }
+      if (state.supplyRoom.wood < planned && state.cash >= 1000) {
+        state.cash -= 600;
+        state.supplyRoom.wood += 5;
+      }
+      playSfx("build");
+      syncAllUI();
+      showToast("Starter Drift Blueprinted", `Planned ${planned} shaft & crosscut cells at 12.5m depth`, "var(--accent-cyan)");
+    }
+
+    function resetCampaign() {
+      initFreshCampaign();
+      setTheme(false);
+      setSimSpeed(1);
+      document.getElementById("strikeModal").classList.add("hidden");
+      document.getElementById("courtModal").classList.add("hidden");
+      document.getElementById("ipoModal").classList.add("hidden");
+      markTerrainCacheDirty();
+      syncAllUI();
+      fitCamera();
+      showToast("Campaign Reset", "STRATA CORP. initialized at $68,000 capital", "var(--accent-cyan)");
+    }
+
+    function getSalePriceMultiplier() {
+      return state.rdLab.modular_refinery ? 1.14 : 1.0;
+    }
+
+    function getTotalStoredUnits() {
+      return state.inventory.oil + state.inventory.gold + state.inventory.lithium;
+    }
+
+    function getStorageCapacity() {
+      const base = STORAGE_TIERS[state.storageTierIdx].cap;
+      return state.rdLab.modular_refinery ? Math.round(base * 1.5) : base;
+    }
+
+    function upgradeStorageTank() {
+      const tier = STORAGE_TIERS[state.storageTierIdx];
+      if (!tier.upgradeCost || state.storageTierIdx >= STORAGE_TIERS.length - 1) return;
+      if (state.cash < tier.upgradeCost) {
+        showToast("Insufficient Cash", `Need $${tier.upgradeCost.toLocaleString()} to expand Surface Tanks`, "var(--crimson)");
+        return;
+      }
+      state.cash -= tier.upgradeCost;
+      state.storageTierIdx++;
+      playSfx("build");
+      syncAllUI();
+      showToast("Storage Tanks Upgraded", `Surface capacity expanded to ${getStorageCapacity()} units`, "var(--emerald)");
+    }
+
+    function sellSingleCommodity(type) {
+      const mult = getSalePriceMultiplier();
+      let earned = 0;
+      if (type === "oil" && state.inventory.oil > 0) {
+        earned = Math.round(state.inventory.oil * state.market.oilPrice * mult);
+        state.inventory.oil = 0;
+      } else if (type === "gold" && state.inventory.gold > 0) {
+        earned = Math.round(state.inventory.gold * state.market.goldPrice * mult);
+        state.inventory.gold = 0;
+      } else if (type === "lithium" && state.inventory.lithium > 0) {
+        earned = Math.round(state.inventory.lithium * state.market.lithiumPrice * mult);
+        state.inventory.lithium = 0;
+      }
+      if (earned > 0) {
+        state.cash += earned;
+        state.totalSales += earned;
+        playSfx("cash");
+        checkMilestones();
+        syncAllUI();
+        showToast("Spot Trade Settled", `+$${earned.toLocaleString()} wired to treasury`, "var(--emerald)");
+      }
+    }
+
+    function sellAllCommodities() {
+      const mult = getSalePriceMultiplier();
+      const total = Math.round(
+        (state.inventory.oil * state.market.oilPrice +
+         state.inventory.gold * state.market.goldPrice +
+         state.inventory.lithium * state.market.lithiumPrice) * mult
+      );
+      if (total <= 0) {
+        showToast("Tanks Empty", "Extract commodities before executing a spot sale", "var(--amber)");
+        return;
+      }
+      state.inventory = { oil: 0, gold: 0, lithium: 0 };
+      state.cash += total;
+      state.totalSales += total;
+      playSfx("cash");
+      checkMilestones();
+      syncAllUI();
+      showToast("Bulk Spot Liquidation", `+$${total.toLocaleString()} settled to treasury`, "var(--emerald)");
+    }
+
+    function deliverFuturesContract() {
+      const fc = state.futures.activeContract;
+      if (!fc) return;
+      if (state.inventory[fc.type] < fc.qty) {
+        showToast("Insufficient Stock", `Need ${fc.qty} ${fc.unit} of ${fc.type.toUpperCase()}`, "var(--crimson)");
+        return;
+      }
+      state.inventory[fc.type] -= fc.qty;
+      const payout = Math.round(fc.qty * fc.contractPrice + fc.bonus);
+      state.cash += payout;
+      state.totalSales += payout;
+      state.futures.completedCount++;
+      state.futures.activeContract = generateFuturesOffer();
+      playSfx("cash");
+      checkMilestones();
+      syncAllUI();
+      showToast("Futures Contract Delivered!", `Settled +$${payout.toLocaleString()} (incl. +$${fc.bonus.toLocaleString()} bonus)`, "var(--emerald)");
+    }
+
+    function computeNetWorth() {
+      const mult = getSalePriceMultiplier();
+      const invVal =
+        state.inventory.oil * state.market.oilPrice * mult +
+        state.inventory.gold * state.market.goldPrice * mult +
+        state.inventory.lithium * state.market.lithiumPrice * mult;
+
+      let assets = 0;
+      Object.values(SUPPORT_MATERIALS).forEach(m => {
+        if (state.unlockedSupports[m.id]) assets += m.rdCost * 0.7;
+        assets += (state.supplyRoom[m.id] || 0) * m.crateCost;
+      });
+      RD_TECH_UPGRADES.forEach(u => {
+        if (state.rdLab[u.id]) assets += u.cost * 0.8;
+      });
+      DRILL_RIGS.forEach(r => {
+        if (state.unlockedRigs[r.id]) assets += r.cost * 0.75;
+      });
+      Object.values(PARCELS).forEach(p => {
+        if (state.unlockedParcels[p.id]) assets += p.cost * 0.8;
+      });
+      for (let i = 0; i <= state.storageTierIdx; i++) {
+        if (i > 0) assets += STORAGE_TIERS[i - 1].upgradeCost * 0.75;
+      }
+      return Math.round(state.cash + invVal + assets);
+    }
+
+    function checkMilestones() {
+      const p = getParcel();
+      const nw = computeNetWorth();
+      if (!state.milestones.m1_sonar && p.deposits.some(d => d.revealed)) state.milestones.m1_sonar = true;
+      if (!state.milestones.m2_deep) {
+        for (let r = 8; r < GRID_ROWS; r++) {
+          for (let c = 0; c < GRID_COLS; c++) {
+            if (p.cells[r][c]?.status === "built") state.milestones.m2_deep = true;
+          }
+        }
+      }
+      if (!state.milestones.m3_futures && state.futures.completedCount >= 1) state.milestones.m3_futures = true;
+      if (!state.milestones.m4_parcel2 && (state.unlockedParcels.p2 || state.unlockedParcels.p3)) state.milestones.m4_parcel2 = true;
+      if (!state.milestones.m5_ipo && nw >= 1000000) state.milestones.m5_ipo = true;
+
+      if (nw >= 1000000 && !state.ipoShown && !state.endlessMode) {
+        state.ipoShown = true;
+        setSimSpeed(0);
+        playSfx("rd");
+        document.getElementById("ipoStatsSummary").innerHTML = `
+          <div>• Final Enterprise Valuation: <strong>$${nw.toLocaleString()}</strong></div>
+          <div>• Total Commodity Sales: <strong>$${state.totalSales.toLocaleString()}</strong></div>
+          <div>• MSHA Safety Rating: <strong>${state.safety.rating}</strong> (${state.safety.accidents} incidents)</div>
+          <div>• Futures Contracts Fulfilled: <strong>${state.futures.completedCount}</strong></div>
+        `;
+        document.getElementById("ipoModal").classList.remove("hidden");
+      }
+    }
+
+    function continueEndlessMode() {
+      state.endlessMode = true;
+      document.getElementById("ipoModal").classList.add("hidden");
+      setSimSpeed(1);
+    }
+
+    function getRowStratum(row) {
+      return STRATA_LAYERS.find(s => row <= s.maxRow) || STRATA_LAYERS[STRATA_LAYERS.length - 1];
+    }
+
+    function hasUtilityWithin(p, row, col, utilType, rad = 2) {
+      for (let r = Math.max(0, row - rad); r <= Math.min(GRID_ROWS - 1, row + rad); r++) {
+        for (let c = Math.max(0, col - rad); c <= Math.min(GRID_COLS - 1, col + rad); c++) {
+          const cell = p.cells[r][c];
+          if (cell && cell.status === "built" && cell.utility === utilType) return true;
+        }
+      }
+      return false;
+    }
+
+    function computeCellEngineering(p, r, c) {
+      const cfg = PARCELS[state.currentParcelId];
+      const cell = p.cells[r][c];
+      const mat = cell ? SUPPORT_MATERIALS[cell.mat] : SUPPORT_MATERIALS[state.selectedSupport];
+      const rig = DRILL_RIGS.find(rg => rg.id === state.activeRigId) || DRILL_RIGS[0];
+      const throt = THROTTLE_MODES[state.drillThrottle];
+      const st = getRowStratum(r);
+
+      const depthM = (r + 1) * CELL_M;
+      const overburdenKn = depthM * st.density * 0.42 * cfg.loadMult;
+
+      let vibeKn = 0;
+      if (p.drill.running && p.drill.bitIntegrity > 0) {
+        const dist = Math.hypot(c - p.drill.col, r - p.drill.currentRow);
+        if (dist <= 4.5) {
+          const pdcMult = state.rdLab.pdc_bits ? 0.65 : 1.0;
+          vibeKn = (1 - dist / 4.5) * 185 * rig.vibe * throt.vibeMult * mat.vibeDamp * pdcMult;
+        }
+      }
+
+      const gasHazard = p.methanePockets.some(mp => mp.active && Math.hypot(mp.col - c, mp.row - r) <= 1.5) &&
+                        !hasUtilityWithin(p, r, c, "vent", 2);
+      const wetSeepage = p.aquiferZones.some(aq => aq.active && Math.hypot(aq.col - c, aq.row - r) <= 1.5) &&
+                         !hasUtilityWithin(p, r, c, "pump", 2);
+      const methaneKn = gasHazard ? 75 : 0;
+
+      const engNearby = state.miners.some(w => w.role === "engineer" && Math.hypot(w.col - c, w.row - r) <= 2.5);
+      const baseCap = Math.max(40, mat.capacityKn - (mat.waterImmune ? 0 : (cell?.corrosionKn || 0)));
+      const techMult = (state.rdLab.prestressed_framing ? 1.15 : 1.0) * (engNearby ? 1.10 : 1.0);
+      const effCapacity = baseCap * techMult;
+      const totalLoad = Math.max(1, overburdenKn + vibeKn + methaneKn);
+      const fos = +(effCapacity / totalLoad).toFixed(2);
+
+      return { fos, loadKn: Math.round(totalLoad), gasHazard, wetSeepage, stratum: st };
+    }
+
+    function stepSimulation(rawDt) {
+      if (state.simSpeed === 0 || state.strike.active || state.court.active) return;
+      const dt = rawDt * state.simSpeed;
+      const p = getParcel();
+      const cfg = PARCELS[state.currentParcelId];
+      const rig = DRILL_RIGS.find(rg => rg.id === state.activeRigId) || DRILL_RIGS[0];
+      const throt = THROTTLE_MODES[state.drillThrottle];
+
+      stepMarketAndFutures(dt);
+      stepShiftEventsAndSafety(dt);
+
+      state.payrollAccum += dt;
+      if (state.payrollAccum >= 12) {
+        state.payrollAccum = 0;
+        const wageBill = state.miners.length * state.wagePerHr;
+        state.cash = Math.max(0, state.cash - wageBill);
+      }
+
+      if (state.autoRestock) {
+        Object.values(SUPPORT_MATERIALS).forEach(m => {
+          if (state.unlockedSupports[m.id] && state.supplyRoom[m.id] === 0) {
+            const cost = m.crateCost * 3;
+            if (state.cash >= cost) {
+              state.cash -= cost;
+              state.supplyRoom[m.id] += 3;
+            }
+          }
+        });
+      }
+
+      const drill = p.drill;
+      if (drill.running && drill.bitIntegrity > 0) {
+        const wearSave = state.rdLab.pdc_bits ? 0.5 : 1.0;
+        drill.pulseTimer = (drill.pulseTimer + dt * 1.3) % 1.0;
+        drill.bitIntegrity = Math.max(0, drill.bitIntegrity - dt * 0.42 * throt.wearMult * wearSave);
+
+        if (drill.currentRow < drill.targetRow) {
+          drill.currentRow = Math.min(drill.targetRow, drill.currentRow + rig.speed * throt.speedMult * dt * 0.75);
+        }
+
+        const curR = Math.floor(drill.currentRow);
+        p.deposits.forEach(dep => {
+          if (dep.amount > 0 && Math.hypot(dep.col - drill.col, dep.row - curR) <= rig.sonarR) {
+            dep.revealed = true;
+          }
+          if (dep.amount > 0 && Math.abs(dep.col - drill.col) <= 0.6 && Math.abs(dep.row - curR) <= 0.8) {
+            const room = Math.max(0, getStorageCapacity() - getTotalStoredUnits());
+            if (room > 0) {
+              const rate = (dep.type === "oil" ? 3.8 : 0.45) * rig.extractRate * throt.speedMult;
+              const pulled = Math.min(dep.amount, room, rate * dt);
+              dep.amount -= pulled;
+              state.inventory[dep.type] += pulled;
+            }
+          }
+        });
+      }
+
+      let collapseTarget = null;
+      let minBuiltFos = 9.9;
+      for (let r = 0; r < GRID_ROWS; r++) {
+        for (let c = 0; c < GRID_COLS; c++) {
+          const cell = p.cells[r][c];
+          if (!cell) continue;
+          const eng = computeCellEngineering(p, r, c);
+          cell.fos = eng.fos;
+          cell.loadKn = eng.loadKn;
+          if (cell.status === "built") {
+            if (cell.fos < minBuiltFos) minBuiltFos = cell.fos;
+            if (eng.wetSeepage && !SUPPORT_MATERIALS[cell.mat].waterImmune) {
+              cell.corrosionKn = (cell.corrosionKn || 0) + dt * 0.32;
+            }
+            if (state.rdLab.pneumatic_chutes && getTotalStoredUnits() < getStorageCapacity()) {
+              const adjDep = p.deposits.find(d => d.revealed && d.amount > 0 && Math.hypot(d.col - c, d.row - r) <= 1.1);
+              if (adjDep) {
+                const trickle = Math.min(adjDep.amount, getStorageCapacity() - getTotalStoredUnits(), (adjDep.type === "oil" ? 1.8 : 0.22) * dt);
+                adjDep.amount -= trickle;
+                state.inventory[adjDep.type] += trickle;
+              }
+            }
+            if (cell.fos < 1.0 && !collapseTarget) {
+              collapseTarget = { r, c, cell };
+            }
+          }
+        }
+      }
+
+      updateMshaSafetyRating(minBuiltFos);
+
+      if (collapseTarget) {
+        playSfx("alarm");
+        handleCaveInCollapse(p, collapseTarget.r, collapseTarget.c, collapseTarget.cell);
+        return;
+      }
+
+      let waitingAtSupply = 0;
+      let targetHoistRow = 0;
+      const chuteBoost = state.rdLab.pneumatic_chutes ? 1.82 : 1.0;
+
+      state.miners.forEach(miner => {
+        if (state.emergencyEvac) {
+          miner.state = "EVACUATING";
+          if (miner.row > 0 && Math.abs(miner.col - cfg.entryCol) > 0.2) {
+            miner.col += Math.sign(cfg.entryCol - miner.col) * 3.8 * dt;
+          } else if (miner.row > -0.35) {
+            miner.row = Math.max(-0.35, miner.row - 4.4 * dt);
+            targetHoistRow = Math.max(0, miner.row);
+          } else {
+            miner.row = -0.35;
+          }
+          return;
+        }
+
+        if (miner.state === "EVACUATING") {
+          miner.state = "IDLE_SURFACE";
+        }
+
+        if (miner.state === "IDLE_SURFACE" || miner.state === "WAITING_STOCK") {
+          const task = findNextBuildTask(p, cfg.entryCol);
+          if (task) {
+            const cell = p.cells[task.r][task.c];
+            if ((state.supplyRoom[cell.mat] || 0) > 0) {
+              miner.targetCell = task;
+              cell.assignedId = miner.id;
+              miner.state = "WALKING_SUPPLY";
+              miner.waitTimer = 0;
+            } else {
+              miner.state = "WAITING_STOCK";
+              miner.col += (cfg.supplyCol - miner.col) * Math.min(1, dt * 4);
+              miner.waitTimer += dt;
+              waitingAtSupply++;
+            }
+            return;
+          }
+
+          if (getTotalStoredUnits() < getStorageCapacity()) {
+            const oreTask = findAccessibleOreDeposit(p);
+            if (oreTask) {
+              miner.targetDepositId = oreTask.dep.id;
+              miner.targetCell = { r: oreTask.standR, c: oreTask.standC };
+              miner.state = "WALKING_HOIST";
+              return;
+            }
+          }
+
+          miner.state = "IDLE_SURFACE";
+          miner.col += (cfg.supplyCol - miner.col) * Math.min(1, dt * 3);
+        } else if (miner.state === "WALKING_SUPPLY") {
+          if (Math.abs(miner.col - cfg.supplyCol) > 0.2) {
+            miner.col += Math.sign(cfg.supplyCol - miner.col) * 3.2 * chuteBoost * dt;
+          } else {
+            const tc = miner.targetCell;
+            const cell = tc ? p.cells[tc.r]?.[tc.c] : null;
+            if (!cell || cell.status !== "planned") {
+              miner.state = "IDLE_SURFACE";
+              return;
+            }
+            if ((state.supplyRoom[cell.mat] || 0) > 0) {
+              state.supplyRoom[cell.mat] -= 1;
+              miner.carryingMat = cell.mat;
+              miner.state = "WALKING_HOIST";
+            } else {
+              cell.assignedId = null;
+              miner.state = "WAITING_STOCK";
+            }
+          }
+        } else if (miner.state === "WALKING_HOIST") {
+          if (Math.abs(miner.col - cfg.entryCol) > 0.2) {
+            miner.col += Math.sign(cfg.entryCol - miner.col) * 3.2 * chuteBoost * dt;
+          } else {
+            miner.col = cfg.entryCol;
+            miner.state = "RIDING_HOIST";
+          }
+        } else if (miner.state === "RIDING_HOIST") {
+          const tc = miner.targetCell;
+          if (!tc) { miner.state = "RETURNING_SURFACE"; return; }
+          targetHoistRow = Math.max(targetHoistRow, tc.r);
+          if (Math.abs(miner.row - tc.r) > 0.15) {
+            miner.row += Math.sign(tc.r - miner.row) * 3.5 * chuteBoost * dt;
+          } else {
+            miner.row = tc.r;
+            miner.state = "WALKING_DRIFT";
+          }
+        } else if (miner.state === "WALKING_DRIFT") {
+          const tc = miner.targetCell;
+          if (!tc) { miner.state = "IDLE_SURFACE"; return; }
+          const ventBoost = hasUtilityWithin(p, tc.r, tc.c, "vent", 2) ? 1.2 : 1.0;
+          if (Math.abs(miner.col - tc.c) > 0.15) {
+            miner.col += Math.sign(tc.c - miner.col) * 3.0 * ventBoost * chuteBoost * dt;
+          } else {
+            miner.col = tc.c;
+            miner.state = miner.carryingMat ? "BUILDING" : "MINING_VEIN";
+          }
+        } else if (miner.state === "BUILDING") {
+          const tc = miner.targetCell;
+          const cell = tc ? p.cells[tc.r]?.[tc.c] : null;
+          if (!cell || cell.status !== "planned") {
+            if (miner.carryingMat) state.supplyRoom[miner.carryingMat] += 1;
+            miner.carryingMat = null;
+            miner.state = "IDLE_SURFACE";
+            return;
+          }
+          const ventBoost = hasUtilityWithin(p, tc.r, tc.c, "vent", 2) ? 1.2 : 1.0;
+          const frameBoost = state.rdLab.prestressed_framing ? 1.4 : 1.0;
+          cell.buildPct += dt * 42 * ventBoost * frameBoost;
+          if (cell.buildPct >= 100) {
+            cell.buildPct = 100;
+            cell.status = "built";
+            cell.assignedId = null;
+            miner.carryingMat = null;
+            miner.targetCell = null;
+            miner.state = "RETURNING_SURFACE";
+            playSfx("build");
+            checkMilestones();
+          }
+        } else if (miner.state === "MINING_VEIN") {
+          const dep = p.deposits.find(d => d.id === miner.targetDepositId);
+          if (!dep || dep.amount <= 0 || getTotalStoredUnits() >= getStorageCapacity()) {
+            miner.state = "RETURNING_SURFACE";
+            return;
+          }
+          const rate = dep.type === "oil" ? 6.2 : (dep.type === "gold" ? 0.9 : 0.6);
+          const take = Math.min(dep.amount, rate * dt * 2.5);
+          dep.amount -= take;
+          miner.carryingOre = { type: dep.type, amount: take };
+          miner.state = "RETURNING_SURFACE";
+        } else if (miner.state === "RETURNING_SURFACE") {
+          if (miner.row > 0 && Math.abs(miner.col - cfg.entryCol) > 0.2) {
+            miner.col += Math.sign(cfg.entryCol - miner.col) * 3.2 * chuteBoost * dt;
+          } else if (miner.row > -0.35) {
+            miner.row = Math.max(-0.35, miner.row - 3.6 * chuteBoost * dt);
+            targetHoistRow = Math.max(0, miner.row);
+          } else {
+            miner.row = -0.35;
+            if (miner.carryingOre) {
+              const room = Math.max(0, getStorageCapacity() - getTotalStoredUnits());
+              state.inventory[miner.carryingOre.type] += Math.min(room, miner.carryingOre.amount);
+              miner.carryingOre = null;
+            }
+            miner.state = "IDLE_SURFACE";
+          }
+        }
+      });
+
+      p.hoistRow += (targetHoistRow - p.hoistRow) * Math.min(1, dt * 8);
+
+      const engCount = state.miners.filter(w => w.role === "engineer").length;
+      const safetyCalm = (state.safety.rating === "A+" || state.safety.rating === "A" ? 0.35 : 0) + engCount * 0.25;
+      if (waitingAtSupply >= 2) {
+        state.morale = Math.max(15, state.morale - dt * Math.max(0.4, 1.85 - safetyCalm) * waitingAtSupply);
+      } else {
+        state.morale = Math.min(98, state.morale + dt * (0.45 + safetyCalm));
+      }
+
+      const strikeThreshold = (state.safety.rating === "A+" || state.safety.rating === "A") ? 34 : 40;
+      if ((waitingAtSupply >= 3 || state.morale < strikeThreshold) && !state.strike.active) {
+        playSfx("alarm");
+        triggerUnionStrike(
+          waitingAtSupply >= 3
+            ? `${waitingAtSupply} miners queued idle outside an empty Material Supply Room!`
+            : `Crew morale fell below ${strikeThreshold}% (${Math.round(state.morale)}%)!`
+        );
+      }
+
+      checkMilestones();
+    }
+
+    function findNextBuildTask(p, entryCol) {
+      let best = null;
+      let bestDist = 999;
+      for (let r = 0; r < GRID_ROWS; r++) {
+        for (let c = 0; c < GRID_COLS; c++) {
+          const cell = p.cells[r][c];
+          if (!cell || cell.status !== "planned" || cell.assignedId) continue;
+          const adjBuilt =
+            (r === 0 && c === entryCol) ||
+            (r > 0 && p.cells[r - 1][c]?.status === "built") ||
+            (r < GRID_ROWS - 1 && p.cells[r + 1][c]?.status === "built") ||
+            (c > 0 && p.cells[r][c - 1]?.status === "built") ||
+            (c < GRID_COLS - 1 && p.cells[r][c + 1]?.status === "built");
+          if (adjBuilt) {
+            const d = r + Math.abs(c - entryCol);
+            if (d < bestDist) { bestDist = d; best = { r, c }; }
+          }
+        }
+      }
+      return best;
+    }
+
+    function findAccessibleOreDeposit(p) {
+      for (const dep of p.deposits) {
+        if (!dep.revealed || dep.amount <= 0) continue;
+        const dirs = [[0, 0], [-1, 0], [1, 0], [0, -1], [0, 1]];
+        for (const [dr, dc] of dirs) {
+          const sr = dep.row + dr;
+          const sc = dep.col + dc;
+          if (sr >= 0 && sr < GRID_ROWS && sc >= 0 && sc < GRID_COLS && p.cells[sr][sc]?.status === "built") {
+            return { dep, standR: sr, standC: sc };
+          }
+        }
+      }
+      return null;
+    }
+
+    function updateMshaSafetyRating(minBuiltFos) {
+      const acc = state.safety.accidents || 0;
+      if (acc === 0 && minBuiltFos >= 1.75) state.safety.rating = "A+";
+      else if (acc <= 1 && minBuiltFos >= 1.45) state.safety.rating = "A";
+      else if (minBuiltFos >= 1.25) state.safety.rating = "B";
+      else if (minBuiltFos >= 1.08) state.safety.rating = "C";
+      else state.safety.rating = "D";
+    }
+
+    function stepShiftEventsAndSafety(dt) {
+      const p = getParcel();
+      if (state.safety.rating === "A+" || state.safety.rating === "A") {
+        state.safety.grantTimer += dt;
+        if (state.safety.grantTimer >= 35) {
+          state.safety.grantTimer = 0;
+          state.cash += 3000;
+          playSfx("cash");
+          showToast(`MSHA ${state.safety.rating} Safety Grant!`, "Awarded +$3,000 zero-incident compliance bonus", "var(--emerald)");
+        }
+      }
+
+      const se = state.shiftEvent;
+      if (se.remaining > 0) {
+        se.remaining -= dt;
+        if (se.remaining <= 0) se.current = null;
+      } else {
+        se.timer -= dt;
+        if (se.timer <= 0) {
+          se.timer = 28;
+          const ev = SHIFT_EVENTS[Math.floor(Math.random() * SHIFT_EVENTS.length)];
+          ev.apply(p);
+          se.current = ev;
+          se.remaining = 18;
+          showToast(`Shift Alert: ${ev.tag}`, ev.text, ev.color);
+        }
+      }
+    }
+
+    function stepMarketAndFutures(dt) {
+      const m = state.market;
+      m.newsTimer += dt;
+
+      if (Math.random() < dt * 0.5) {
+        m.oilPrev = m.oilPrice;
+        m.oilPrice = Math.max(52, Math.min(145, +(m.oilPrice + (Math.random() - 0.49) * 1.35).toFixed(2)));
+        m.oilHistory.push(m.oilPrice);
+        if (m.oilHistory.length > 26) m.oilHistory.shift();
+
+        m.goldPrev = m.goldPrice;
+        m.goldPrice = Math.max(2800, Math.min(4600, Math.round(m.goldPrice + (Math.random() - 0.49) * 22)));
+        m.goldHistory.push(m.goldPrice);
+        if (m.goldHistory.length > 26) m.goldHistory.shift();
+
+        m.lithiumPrev = m.lithiumPrice;
+        m.lithiumPrice = Math.max(9200, Math.min(22000, Math.round(m.lithiumPrice + (Math.random() - 0.49) * 140)));
+        m.lithiumHistory.push(m.lithiumPrice);
+        if (m.lithiumHistory.length > 26) m.lithiumHistory.shift();
+      }
+
+      if (m.newsTimer >= 20) {
+        m.newsTimer = 0;
+        const ev = NEWS_WIRE_EVENTS[Math.floor(Math.random() * NEWS_WIRE_EVENTS.length)];
+        m.oilPrev = m.oilPrice;
+        m.oilPrice = Math.max(52, Math.min(150, +(m.oilPrice * ev.oilMult).toFixed(2)));
+        m.oilHistory.push(m.oilPrice);
+        if (m.oilHistory.length > 26) m.oilHistory.shift();
+
+        m.goldPrev = m.goldPrice;
+        m.goldPrice = Math.round(m.goldPrice * ev.goldMult);
+        m.goldHistory.push(m.goldPrice);
+        if (m.goldHistory.length > 26) m.goldHistory.shift();
+
+        m.lithiumPrev = m.lithiumPrice;
+        m.lithiumPrice = Math.round(m.lithiumPrice * ev.lithMult);
+        m.lithiumHistory.push(m.lithiumPrice);
+        if (m.lithiumHistory.length > 26) m.lithiumHistory.shift();
+
+        const now = new Date();
+        const ts = `${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`;
+        m.newsFeed.unshift({ time: ts, tag: ev.tag, color: ev.color, headline: ev.headline });
+        if (m.newsFeed.length > 8) m.newsFeed.pop();
+        showToast(`Market Wire: ${ev.tag}`, ev.headline, ev.color);
+      }
+
+      if (state.futures.activeContract) {
+        state.futures.activeContract.timeLeft -= dt;
+        if (state.futures.activeContract.timeLeft <= 0) {
+          state.futures.activeContract = generateFuturesOffer();
+        }
+      }
+    }
+
+    const STRIKE_ROUNDS = [
+      {
+        title: "ROUND 1 OF 3 — WAGE & HAZARD PAY NEGOTIATION",
+        q: "Local 408 demands an immediate hourly wage increase to compensate for subsurface depth and waiting delays.",
+        opts: [
+          { label: "Agree to +$15/hr raise and restock Material Supply Room immediately", wageAdd: 15, patAdd: 15, moraleAdd: 18, quote: "Fair compromise—that puts our families first." },
+          { label: "Offer +$8/hr raise plus quarterly safety profit-sharing", wageAdd: 8, patAdd: 5, moraleAdd: 10, quote: "We'll accept +$8/hr if you commit to better shoring." },
+          { label: "Refuse any wage increase and demand immediate return to work", wageAdd: 0, patAdd: -35, moraleAdd: -10, quote: "Unacceptable! The picket line holds firm!" }
+        ]
+      },
+      {
+        title: "ROUND 2 OF 3 — MATERIAL SUPPLY ROOM & QUEUE GUARANTEES",
+        q: "Miners refuse to stand unpaid outside an empty Material Supply Room.",
+        opts: [
+          { label: "Enable Warehouse Auto-Restock & pay idle standby wages", wageAdd: 4, patAdd: 20, moraleAdd: 14, quote: "Auto-Restock keeps crates flowing—smart management." },
+          { label: "Guarantee minimum 5-crate timber/concrete buffer before shifts", wageAdd: 0, patAdd: 10, moraleAdd: 8, quote: "We'll hold you to that inventory floor." },
+          { label: "Blame miners for slow hauling speeds", wageAdd: 0, patAdd: -35, moraleAdd: -12, quote: "Insulting the crew won't dig a single meter of ore!" }
+        ]
+      },
+      {
+        title: "ROUND 3 OF 3 — UNDERGROUND STRUCTURAL SAFETY CHARTER",
+        q: "Final ratification item: emergency evacuation protocols and minimum FoS standards.",
+        opts: [
+          { label: "Sign MSHA FoS >= 1.35 Charter & deploy Ventilation/Sump utilities", wageAdd: 0, patAdd: 25, moraleAdd: 16, quote: "Charter signed! Crew is heading back to the hoist!" },
+          { label: "Commit to immediate Emergency Evacuate drills on FoS < 1.15 warnings", wageAdd: 2, patAdd: 15, moraleAdd: 10, quote: "Deal. Keep those alarms active." },
+          { label: "Refuse safety charter concessions", wageAdd: 0, patAdd: -30, moraleAdd: -8, quote: "No safety charter, no hoist!" }
+        ]
+      }
+    ];
+
+    function triggerUnionStrike(reason) {
+      state.strike.active = true;
+      state.strike.reason = reason;
+      state.strike.round = 0;
+      state.strike.patience = 100;
+      state.strike.demandWage = state.wagePerHr + 25;
+      renderStrikeModal();
+      document.getElementById("strikeModal").classList.remove("hidden");
+    }
+
+    function renderStrikeModal() {
+      const s = state.strike;
+      const rObj = STRIKE_ROUNDS[Math.min(s.round, STRIKE_ROUNDS.length - 1)];
+      document.getElementById("strikeReasonText").textContent = s.reason;
+      document.getElementById("strikePatienceVal").textContent = `${Math.max(0, s.patience)}%`;
+      document.getElementById("strikeCurWage").textContent = `$${state.wagePerHr}/hr`;
+      document.getElementById("strikeDemWage").textContent = `$${s.demandWage}/hr`;
+      document.getElementById("strikeRoundTitle").textContent = rObj.title;
+      document.getElementById("strikeQuestionText").textContent = rObj.q;
+
+      document.getElementById("strikeOptionsList").innerHTML = rObj.opts.map((opt, idx) => `
+        <button onclick="chooseStrikeOption(${idx})" class="cad-btn option-card-btn">
+          <strong style="font-size:12px; color:var(--text-primary);">${opt.label}</strong>
+          <span class="mono" style="font-size:10px; color:var(--text-muted);">
+            Wage Impact: ${opt.wageAdd > 0 ? `+$${opt.wageAdd}/hr` : "$0/hr"} • Morale: ${opt.moraleAdd >= 0 ? `+${opt.moraleAdd}%` : `${opt.moraleAdd}%`}
+          </span>
+        </button>
+      `).join("");
+    }
+
+    function chooseStrikeOption(optIdx) {
+      const s = state.strike;
+      const rObj = STRIKE_ROUNDS[s.round];
+      const opt = rObj.opts[optIdx];
+      state.wagePerHr += opt.wageAdd;
+      s.patience = Math.min(100, s.patience + opt.patAdd);
+      state.morale = Math.max(25, Math.min(95, state.morale + opt.moraleAdd));
+      document.getElementById("strikeRepQuote").textContent = `"${opt.quote}"`;
+
+      if (opt.label.includes("Auto-Restock")) state.autoRestock = true;
+
+      s.round++;
+      if (s.patience <= 0) {
+        state.wagePerHr = s.demandWage;
+        state.morale = 75;
+        concludeStrike("Negotiations collapsed—STRATA CORP. forced to accept full union wage demand to resume work.");
+        return;
+      }
+
+      if (s.round >= STRIKE_ROUNDS.length) {
+        state.strikesCleared++;
+        state.morale = Math.max(78, state.morale);
+        concludeStrike(`Collective bargaining ratified at $${state.wagePerHr}/hr! Miners returned to work.`);
+      } else {
+        renderStrikeModal();
+      }
+    }
+
+    function concludeStrike(msg) {
+      state.strike.active = false;
+      state.miners.forEach(m => { if (m.state === "WAITING_STOCK") m.state = "IDLE_SURFACE"; });
+      document.getElementById("strikeModal").classList.add("hidden");
+      playSfx("build");
+      syncAllUI();
+      showToast("Strike Resolved", msg, "var(--emerald)");
+    }
+
+    function handleCaveInCollapse(p, r, c, cell) {
+      const matName = SUPPORT_MATERIALS[cell.mat].name;
+      p.cells[r][c] = null;
+
+      const trapped = state.miners.filter(m => m.row >= 0 && Math.hypot(m.col - c, m.row - r) <= 2.4);
+      if (trapped.length === 0) {
+        state.safety.accidents = (state.safety.accidents || 0) + 1;
+        syncAllUI();
+        showToast("Unmanned Shaft Collapse!", `${matName} at Col ${c}, ${(r * CELL_M).toFixed(1)}m failed (FoS < 1.0) — zero casualties!`, "var(--amber)");
+        return;
+      }
+
+      state.safety.accidents = (state.safety.accidents || 0) + 1;
+      const victim = trapped[0];
+      state.miners = state.miners.filter(m => m.id !== victim.id);
+      if (state.miners.length === 0) addWorkerToRoster("A. Novak", "miner");
+
+      const nw = computeNetWorth();
+      const scale = Math.max(1, Math.min(3.2, nw / 95000));
+      const minDmg = Math.round(10000 * scale);
+      const maxDmg = Math.min(100000, Math.round(32000 * scale));
+
+      state.court = {
+        active: true,
+        step: "counsel",
+        counselType: null,
+        incidentText: `Fatal roof failure of ${matName} at Col ${c}, Depth ${(r * CELL_M).toFixed(1)}m claimed the life of ${victim.name}.`,
+        minDmg,
+        maxDmg,
+        questions: [],
+        qIdx: 0,
+        score: 0,
+        answered: false
+      };
+
+      document.getElementById("courtIncidentSummary").textContent = state.court.incidentText;
+      document.getElementById("courtExposureText").textContent = `$${minDmg.toLocaleString()} – $${maxDmg.toLocaleString()}`;
+      document.getElementById("courtCounselStep").classList.remove("hidden");
+      document.getElementById("courtQuestionStep").classList.add("hidden");
+      document.getElementById("hireEliteCounselBtn").disabled = state.cash < 10000;
+      document.getElementById("courtModal").classList.remove("hidden");
+      drawCourtroomCanvas();
+    }
+
+    function chooseLegalCounsel(type) {
+      const ct = state.court;
+      ct.counselType = type;
+      ct.step = "questions";
+      ct.qIdx = 0;
+      ct.score = 0;
+      ct.answered = false;
+
+      if (type === "pro") {
+        if (state.cash < 10000) return;
+        state.cash -= 10000;
+        playSfx("cash");
+        ct.questions = [...CASUAL_PRO_QUESTIONS];
+      } else {
+        const shuffled = [...HARD_LAW_QUESTIONS].sort(() => Math.random() - 0.5);
+        ct.questions = shuffled.slice(0, 3);
+      }
+
+      document.getElementById("courtCounselStep").classList.add("hidden");
+      document.getElementById("courtQuestionStep").classList.remove("hidden");
+      renderCourtQuestion();
+      drawCourtroomCanvas();
+    }
+
+    function renderCourtQuestion() {
+      const ct = state.court;
+      const qObj = ct.questions[ct.qIdx];
+      ct.answered = false;
+
+      document.getElementById("courtQProgress").textContent = `QUESTION ${ct.qIdx + 1} OF 3`;
+      document.getElementById("courtScoreText").textContent = ct.counselType === "pro"
+        ? "Sterling & Vance LLP Dismissal Motion Active"
+        : `Sustained Defenses: ${ct.score} / 3 (Need 2/3)`;
+      document.getElementById("courtJudgePrompt").textContent = `Hon. Judge Arthur Pendelton: "${qObj.q}"`;
+      document.getElementById("courtVerdictBox").classList.add("hidden");
+      document.getElementById("courtContinueBtn").classList.add("hidden");
+
+      document.getElementById("courtAnswersList").innerHTML = qObj.opts.map((opt, idx) => `
+        <button id="courtAns_${idx}" onclick="submitCourtAnswer(${idx})" class="cad-btn option-card-btn">
+          <span style="font-size:12px; font-weight:600; color:var(--text-primary);">${String.fromCharCode(65 + idx)}. ${opt}</span>
+        </button>
+      `).join("");
+    }
+
+    function submitCourtAnswer(idx) {
+      const ct = state.court;
+      if (ct.answered) return;
+      ct.answered = true;
+      const qObj = ct.questions[ct.qIdx];
+      const vBox = document.getElementById("courtVerdictBox");
+      vBox.classList.remove("hidden");
+
+      if (ct.counselType === "pro") {
+        ct.score++;
+        document.getElementById(`courtAns_${idx}`).classList.add("active");
+        vBox.style.backgroundColor = "var(--emerald-bg)";
+        vBox.style.borderColor = "var(--emerald-border)";
+        vBox.innerHTML = `<strong style="color:var(--emerald)">Judge Pendelton Nods:</strong> "Very well. Counsel's procedural stipulation is noted in the record."`;
+        playSfx("build");
+      } else {
+        const isRight = idx === qObj.correct;
+        if (isRight) {
+          ct.score++;
+          document.getElementById(`courtAns_${idx}`).classList.add("active");
+          vBox.style.backgroundColor = "var(--emerald-bg)";
+          vBox.style.borderColor = "var(--emerald-border)";
+          vBox.innerHTML = `<strong style="color:var(--emerald)">Sustained!</strong> Correct legal standard cited before the bench.`;
+          playSfx("build");
+        } else {
+          document.getElementById(`courtAns_${idx}`).style.borderColor = "var(--crimson)";
+          document.getElementById(`courtAns_${qObj.correct}`).classList.add("active");
+          vBox.style.backgroundColor = "var(--crimson-bg)";
+          vBox.style.borderColor = "var(--crimson-border)";
+          vBox.innerHTML = `<strong style="color:var(--crimson)">Overruled!</strong> Controlling precedent required: <em>${qObj.opts[qObj.correct]}</em>.`;
+          playSfx("alarm");
+        }
+      }
+
+      document.getElementById("courtScoreText").textContent = ct.counselType === "pro"
+        ? "Sterling & Vance LLP Dismissal Motion Active"
+        : `Sustained Defenses: ${ct.score} / 3 (Need 2/3)`;
+
+      const btn = document.getElementById("courtContinueBtn");
+      btn.classList.remove("hidden");
+      btn.textContent = ct.qIdx < 2 ? "Next Question →" : "Hear Final Verdict →";
+    }
+
+    function advanceCourtQuestion() {
+      const ct = state.court;
+      if (ct.qIdx < 2) {
+        ct.qIdx++;
+        renderCourtQuestion();
+        return;
+      }
+
+      const won = ct.counselType === "pro" || ct.score >= 2;
+      ct.active = false;
+      document.getElementById("courtModal").classList.add("hidden");
+
+      if (won) {
+        state.lawsuitsCleared++;
+        playSfx("cash");
+        syncAllUI();
+        showToast(
+          ct.counselType === "pro" ? "Case Dismissed (Elite Counsel)" : `Acquitted (${ct.score}/3 Legal Points)`,
+          "Zero wrongful-death judgment assessed against STRATA CORP.",
+          "var(--emerald)"
+        );
+      } else {
+        const penalty = Math.round(ct.minDmg + Math.random() * (ct.maxDmg - ct.minDmg));
+        state.cash = Math.max(0, state.cash - penalty);
+        playSfx("alarm");
+        syncAllUI();
+        showToast(
+          `Liable Judgment (-$${penalty.toLocaleString()})`,
+          `Scored ${ct.score}/3 in court — estate awarded $${penalty.toLocaleString()} damages`,
+          "var(--crimson)"
+        );
+      }
+    }
+
+    function drawCourtroomCanvas() {
+      const cc = document.getElementById("courtroomCanvas");
+      if (!cc) return;
+      const r = cc.parentElement.getBoundingClientRect();
+      if (!r.width || !r.height) return;
+      const dpr = window.devicePixelRatio || 1;
+      cc.width = r.width * dpr;
+      cc.height = r.height * dpr;
+      const g = cc.getContext("2d");
+      g.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      const W = r.width, H = r.height;
+      g.fillStyle = "#1e293b";
+      g.fillRect(0, 0, W, H);
+      g.fillStyle = "#451a03";
+      g.fillRect(0, H * 0.42, W, H * 0.58);
+
+      g.fillStyle = "#78350f";
+      g.fillRect(28, 10, 18, H - 10);
+      g.fillRect(W - 46, 10, 18, H - 10);
+
+      g.beginPath();
+      g.arc(W * 0.5, 42, 22, 0, Math.PI * 2);
+      g.fillStyle = "#d97706";
+      g.fill();
+      g.strokeStyle = "#fef3c7";
+      g.lineWidth = 2;
+      g.stroke();
+
+      g.fillStyle = "#fde68a";
+      g.beginPath();
+      g.arc(W * 0.5, 64, 11, 0, Math.PI * 2);
+      g.fill();
+      g.fillStyle = "#0f172a";
+      g.fillRect(W * 0.5 - 18, 75, 36, 26);
+
+      g.fillStyle = "#92400e";
+      g.strokeStyle = "#f59e0b";
+      g.lineWidth = 1.5;
+      g.fillRect(W * 0.5 - 95, 92, 190, 46);
+      g.strokeRect(W * 0.5 - 95, 92, 190, 46);
+
+      g.fillStyle = "#fef3c7";
+      g.font = "700 10px JetBrains Mono, monospace";
+      g.textAlign = "center";
+      g.fillText("HON. JUDGE A. PENDELTON", W * 0.5, 118);
+
+      g.fillStyle = "#78350f";
+      g.fillRect(45, H - 24, 145, 18);
+      g.fillRect(W - 190, H - 24, 145, 18);
+      g.fillStyle = "#cbd5e1";
+      g.font = "600 9.5px Inter, sans-serif";
+      g.fillText("PLAINTIFF ESTATE", 117, H - 12);
+      g.fillText(state.court.counselType === "pro" ? "STERLING & VANCE LLP" : "STRATA DEFENSE", W - 117, H - 12);
+    }
+
+    function updateContextBar() {
+      const pill = document.getElementById("contextToolPill");
+      const hint = document.getElementById("contextHintText");
+      const m = SUPPORT_MATERIALS[state.selectedSupport];
+
+      if (state.activeTool === "blueprint") {
+        pill.textContent = `SHAFT PLANNER: ${m.short} ($${m.crateCost}/crate • ${m.capacityKn} kN)`;
+        pill.style.backgroundColor = "var(--accent-cyan-bg)";
+        pill.style.color = "var(--accent-cyan)";
+        hint.textContent = "Click-and-drag across the 24×18 subsurface grid to plan shafts & crosscuts";
+      } else if (state.activeTool === "sonar") {
+        const rad = state.rdLab.gpr_v2 ? 4 : 2;
+        pill.textContent = `SEISMIC SONAR PING ($450 • ${rad}-Cell Radius)`;
+        pill.style.backgroundColor = "var(--accent-cyan-bg)";
+        pill.style.color = "var(--accent-cyan)";
+        hint.textContent = `Click underground to reveal deposits, methane & aquifers within ${rad} cells`;
+      } else if (state.activeTool === "drill") {
+        pill.textContent = "AIM DRILL RIG (Click Column & Target Depth)";
+        pill.style.backgroundColor = "var(--amber-bg)";
+        pill.style.color = "var(--amber)";
+        hint.textContent = "Relocates surface derrick and bores down to extract oil & ore pockets";
+      } else if (state.activeTool === "vent") {
+        pill.textContent = "VENTILATION SCRUBBER DUCT ($650)";
+        pill.style.backgroundColor = "var(--emerald-bg)";
+        pill.style.color = "var(--emerald)";
+        hint.textContent = "Click any built tunnel cell to scrub methane gas & boost work speed +20%";
+      } else if (state.activeTool === "pump") {
+        pill.textContent = "DEWATERING SUMP PUMP ($850)";
+        pill.style.backgroundColor = "var(--accent-cyan-bg)";
+        pill.style.color = "var(--accent-cyan)";
+        hint.textContent = "Click any built tunnel cell to drain groundwater seepage & prevent corrosion";
+      } else {
+        pill.textContent = "SALVAGE / DEMOLISH (80% REFUND)";
+        pill.style.backgroundColor = "var(--crimson-bg)";
+        pill.style.color = "var(--crimson)";
+        hint.textContent = "Click any planned or built cell to dismantle and recover 80% material value";
+      }
+    }
+
+    function syncAllUI() {
+      const nw = computeNetWorth();
+      const ipoPct = Math.min(100, (nw / 1000000) * 100);
+      const p = getParcel();
+      const mult = getSalePriceMultiplier();
+
+      document.getElementById("hudCashVal").textContent = `$${state.cash.toLocaleString()}`;
+      document.getElementById("hudNetWorthVal").textContent = `$${nw.toLocaleString()}`;
+      document.getElementById("hudGoalBar").style.width = `${ipoPct.toFixed(1)}%`;
+      document.getElementById("mHudCashVal").textContent = `$${state.cash.toLocaleString()}`;
+      document.getElementById("mHudNetWorthVal").textContent = `$${nw.toLocaleString()}`;
+
+      const oilChgPct = (((state.market.oilPrice - state.market.oilPrev) / state.market.oilPrev) * 100).toFixed(1);
+      const isUp = state.market.oilPrice >= state.market.oilPrev;
+      document.getElementById("hudOilPrice").textContent = `$${state.market.oilPrice.toFixed(2)}`;
+      document.getElementById("mHudOilPrice").textContent = `$${state.market.oilPrice.toFixed(2)}`;
+      const dPill = document.getElementById("hudOilDelta");
+      dPill.textContent = `${isUp ? "+" : ""}${oilChgPct}%`;
+      dPill.style.backgroundColor = isUp ? "var(--emerald-bg)" : "var(--crimson-bg)";
+      dPill.style.color = isUp ? "var(--emerald)" : "var(--crimson)";
+
+      const sRating = state.safety.rating || "A+";
+      const sGood = sRating === "A+" || sRating === "A";
+      const sWarn = sRating === "B" || sRating === "C";
+      ["hudSafetyVal", "mHudSafetyVal"].forEach(id => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.textContent = sRating;
+        el.style.color = sGood ? "var(--emerald)" : (sWarn ? "var(--amber)" : "var(--crimson)");
+        if (id === "hudSafetyVal") {
+          el.style.backgroundColor = sGood ? "var(--emerald-bg)" : (sWarn ? "var(--amber-bg)" : "var(--crimson-bg)");
+        }
+      });
+
+      const idleCount = state.miners.filter(m => m.state === "WAITING_STOCK").length;
+      const actCount = state.miners.length - idleCount;
+      const crewStr = `${actCount}A/${idleCount}I • ${Math.round(state.morale)}%`;
+      document.getElementById("hudCrewVal").textContent = crewStr;
+      document.getElementById("mHudCrewVal").textContent = crewStr;
+
+      document.getElementById("parcelSelect").value = state.currentParcelId;
+      document.getElementById("sfxToggleBtn").classList.toggle("active", state.sfxEnabled);
+
+      const seBanner = document.getElementById("shiftEventBanner");
+      if (state.shiftEvent && state.shiftEvent.current && state.shiftEvent.remaining > 0) {
+        seBanner.classList.remove("hidden");
+        seBanner.style.borderLeftColor = state.shiftEvent.current.color;
+        document.getElementById("shiftEventTag").textContent = state.shiftEvent.current.tag;
+        document.getElementById("shiftEventTag").style.color = state.shiftEvent.current.color;
+        document.getElementById("shiftEventTimer").textContent = `${Math.ceil(state.shiftEvent.remaining)}s`;
+        document.getElementById("shiftEventText").textContent = state.shiftEvent.current.text;
+      } else {
+        seBanner.classList.add("hidden");
+      }
+
+      const matKeys = Object.values(SUPPORT_MATERIALS);
+      document.getElementById("supportMaterialsList").innerHTML = matKeys.map((m, idx) => {
+        const unlocked = !!state.unlockedSupports[m.id];
+        const active = unlocked && state.selectedSupport === m.id && state.activeTool === "blueprint";
+        const dispCap = state.rdLab.prestressed_framing ? Math.round(m.capacityKn * 1.15) : m.capacityKn;
+        return `
+          <button onclick="handleSupportClick('${m.id}')" class="cad-btn mat-btn ${active ? 'active' : ''}">
+            <div class="mat-row">
+              <div style="display:flex; align-items:center; gap:5px; min-width:0;">
+                <span class="mono key-cap">${idx + 1}</span>
+                <span class="mat-swatch" style="background-color:${m.colorDay};"></span>
+                <span style="font-size:11px; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${m.short}</span>
+              </div>
+              <span class="mono" style="font-size:9.5px; font-weight:700; color:${unlocked ? 'var(--text-primary)' : 'var(--amber)'}; flex-shrink:0;">
+                ${unlocked ? `$${m.crateCost}/cr` : `R&D $${(m.rdCost / 1000).toFixed(0)}k`}
+              </span>
+            </div>
+            <div class="mat-row mono" style="font-size:9px; color:var(--text-muted);">
+              <span>${dispCap} kN</span>
+              <span>${unlocked ? (m.waterImmune ? "Waterproof" : `${m.vibeDamp}x Vibe`) : m.unlockDesc}</span>
+            </div>
+          </button>
+        `;
+      }).join("");
+
+      const bitPct = Math.round(p.drill.bitIntegrity);
+      document.getElementById("bitIntegrityText").textContent = `${bitPct}%`;
+      document.getElementById("bitIntegrityText").style.color = bitPct < 30 ? "var(--crimson)" : "var(--emerald)";
+      document.getElementById("bitIntegrityBar").style.width = `${bitPct}%`;
+      document.getElementById("bitIntegrityBar").style.backgroundColor = bitPct < 30 ? "var(--crimson)" : "var(--emerald)";
+
+      document.getElementById("drillRigList").innerHTML = DRILL_RIGS.map(r => {
+        const owned = !!state.unlockedRigs[r.id];
+        const active = state.activeRigId === r.id;
+        return `
+          <button onclick="handleRigClick('${r.id}')" class="cad-btn mat-btn ${active ? 'active' : ''}">
+            <div class="mat-row">
+              <span style="font-size:10.5px; font-weight:700;">${r.name}</span>
+              <span class="mono" style="font-size:9.5px; font-weight:700; color:${owned ? 'var(--emerald)' : 'var(--amber)'};">
+                ${owned ? (active ? "ACTIVE" : "OWNED") : `$${(r.cost / 1000).toFixed(1)}k`}
+              </span>
+            </div>
+            <span class="mono" style="font-size:9px; color:var(--text-muted);">${r.desc}</span>
+          </button>
+        `;
+      }).join("");
+
+      const totalCrates = Object.values(state.supplyRoom).reduce((a, b) => a + b, 0);
+      document.getElementById("supplyTotalBadge").textContent = String(totalCrates);
+      const rdDone = RD_TECH_UPGRADES.filter(u => state.rdLab[u.id]).length;
+      document.getElementById("rdCountBadge").textContent = `${rdDone}/5`;
+      document.getElementById("crewTabBadge").textContent = String(state.miners.length);
+      const goalsDone = Object.values(state.milestones).filter(Boolean).length;
+      document.getElementById("goalsTabBadge").textContent = `${goalsDone}/5`;
+
+      document.getElementById("autoRestockBtn").textContent = `Auto-Restock: ${state.autoRestock ? "ON" : "OFF"}`;
+      document.getElementById("autoRestockBtn").classList.toggle("active", state.autoRestock);
+      document.getElementById("supplyIdleAlert").classList.toggle("hidden", idleCount === 0);
+
+      document.getElementById("supplyRoomList").innerHTML = matKeys.map(m => {
+        const unlocked = !!state.unlockedSupports[m.id];
+        const qty = state.supplyRoom[m.id] || 0;
+        return `
+          <div class="sub-box" style="display:flex; align-items:center; justify-content:space-between; gap:6px; opacity:${unlocked ? 1 : 0.5};">
+            <div style="min-width:0;">
+              <div style="font-size:11px; font-weight:700;">${m.short}</div>
+              <div class="mono" style="font-size:9.5px; color:${qty === 0 && unlocked ? 'var(--crimson)' : 'var(--text-secondary)'};">
+                Stock: <strong>${qty} crates</strong> ($${m.crateCost}/ea)
+              </div>
+            </div>
+            ${unlocked ? `
+              <div style="display:flex; gap:4px; flex-shrink:0;">
+                <button onclick="restockMaterial('${m.id}', 1)" class="cad-btn mono" style="height:23px; padding:0 6px; font-size:10px; font-weight:700;">+1</button>
+                <button onclick="restockMaterial('${m.id}', 5)" class="cad-btn mono" style="height:23px; padding:0 6px; font-size:10px; font-weight:700;">+5</button>
+              </div>
+            ` : `<span class="mono" style="font-size:9.5px; color:var(--text-muted);">LOCKED</span>`}
+          </div>
+        `;
+      }).join("");
+
+      const stored = Math.round(getTotalStoredUnits());
+      const cap = getStorageCapacity();
+      document.getElementById("storageCapText").textContent = `${stored} / ${cap} units`;
+      const upTankBtn = document.getElementById("upgradeTankBtn");
+      const curTier = STORAGE_TIERS[state.storageTierIdx];
+      if (curTier.upgradeCost > 0) {
+        upTankBtn.disabled = false;
+        upTankBtn.textContent = `Tank + ($${curTier.upgradeCost / 1000}k)`;
+      } else {
+        upTankBtn.disabled = true;
+        upTankBtn.textContent = "Max Tanks";
+      }
+
+      const oilVal = Math.round(state.inventory.oil * state.market.oilPrice * mult);
+      const goldVal = Math.round(state.inventory.gold * state.market.goldPrice * mult);
+      const lithVal = Math.round(state.inventory.lithium * state.market.lithiumPrice * mult);
+      document.getElementById("sellAllTotalSpan").textContent = (oilVal + goldVal + lithVal).toLocaleString();
+      document.getElementById("refineryBonusBadge").classList.toggle("hidden", !state.rdLab.modular_refinery);
+
+      const selAsset = state.market.selectedChart || "oil";
+      const activeP = selAsset === "oil"
+        ? `$${state.market.oilPrice.toFixed(2)}/bbl`
+        : (selAsset === "gold" ? `$${state.market.goldPrice.toLocaleString()}/oz` : `$${state.market.lithiumPrice.toLocaleString()}/t`);
+      const curNum = selAsset === "oil" ? state.market.oilPrice : (selAsset === "gold" ? state.market.goldPrice : state.market.lithiumPrice);
+      const prevNum = selAsset === "oil" ? state.market.oilPrev : (selAsset === "gold" ? state.market.goldPrev : state.market.lithiumPrev);
+      const chgPct = (((curNum - prevNum) / prevNum) * 100).toFixed(1);
+      const chartUp = curNum >= prevNum;
+      document.getElementById("activeChartPrice").textContent = activeP;
+      const acDelta = document.getElementById("activeChartDelta");
+      acDelta.textContent = `${chartUp ? "+" : ""}${chgPct}%`;
+      acDelta.style.color = chartUp ? "var(--emerald)" : "var(--crimson)";
+
+      document.getElementById("exchOilPrice").textContent = `$${(state.market.oilPrice * mult).toFixed(2)}/bbl`;
+      document.getElementById("invOilText").textContent = `${Math.floor(state.inventory.oil)} bbl`;
+      document.getElementById("valOilText").textContent = oilVal.toLocaleString();
+
+      document.getElementById("exchGoldPrice").textContent = `$${Math.round(state.market.goldPrice * mult).toLocaleString()}/oz`;
+      document.getElementById("invGoldText").textContent = `${state.inventory.gold.toFixed(1)} oz`;
+      document.getElementById("valGoldText").textContent = goldVal.toLocaleString();
+
+      document.getElementById("exchLithPrice").textContent = `$${Math.round(state.market.lithiumPrice * mult).toLocaleString()}/t`;
+      document.getElementById("invLithText").textContent = `${state.inventory.lithium.toFixed(1)} t`;
+      document.getElementById("valLithText").textContent = lithVal.toLocaleString();
+
+      const fc = state.futures.activeContract;
+      if (fc) {
+        const have = state.inventory[fc.type];
+        const ready = have >= fc.qty;
+        const payout = Math.round(fc.qty * fc.contractPrice + fc.bonus);
+        document.getElementById("futuresContractBox").innerHTML = `
+          <div class="sub-box mono" style="font-size:10px; display:flex; flex-direction:column; gap:4px;">
+            <div style="display:flex; justify-content:space-between; font-weight:700;">
+              <span>Deliver ${fc.qty} ${fc.unit} ${fc.type.toUpperCase()}</span>
+              <span style="color:var(--amber);">${Math.ceil(fc.timeLeft)}s</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; color:var(--text-secondary);">
+              <span>Progress: ${Math.floor(have)} / ${fc.qty} ${fc.unit}</span>
+              <span style="color:var(--emerald); font-weight:700;">$${payout.toLocaleString()}</span>
+            </div>
+            <button ${ready ? `onclick="deliverFuturesContract()"` : "disabled"} class="btn-solid-emerald" style="height:23px; font-size:10px;">
+              ${ready ? "Deliver Futures Contract ✓" : `Need ${Math.max(0, Math.ceil(fc.qty - have))} more ${fc.unit}`}
+            </button>
+          </div>
+        `;
+      }
+
+      if (state.rightTab === "exchange") renderOilSparkline();
+
+      document.getElementById("rdTechList").innerHTML = RD_TECH_UPGRADES.map(u => {
+        const owned = !!state.rdLab[u.id];
+        return `
+          <div class="sub-box" style="display:flex; flex-direction:column; gap:4px; border-color:${owned ? 'var(--emerald-border)' : 'var(--border-hairline)'};">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:5px;">
+              <span style="font-size:11px; font-weight:700; line-height:1.25;">${u.name}</span>
+              <span class="mono" style="font-size:9px; padding:1px 5px; border-radius:4px; font-weight:700; background:${owned ? 'var(--emerald-bg)' : 'var(--accent-cyan-bg)'}; color:${owned ? 'var(--emerald)' : 'var(--accent-cyan)'}; flex-shrink:0;">
+                ${u.badge}
+              </span>
+            </div>
+            <div style="font-size:10px; color:var(--text-secondary); line-height:1.35;">${u.desc}</div>
+            <button ${owned ? "disabled" : `onclick="purchaseRdUpgrade('${u.id}')"`} class="cad-btn mono" style="height:23px; font-size:10px; font-weight:700; color:${owned ? 'var(--emerald)' : 'var(--text-primary)'};">
+              ${owned ? "RESEARCHED ✓" : `Research ($${u.cost.toLocaleString()})`}
+            </button>
+          </div>
+        `;
+      }).join("");
+
+      document.getElementById("payrollRateText").textContent = `$${state.miners.length * state.wagePerHr}/hr`;
+      document.getElementById("crewMoraleVal").textContent = `${Math.round(state.morale)}%`;
+      document.getElementById("crewMoraleVal").style.color = state.morale < 45 ? "var(--crimson)" : "var(--emerald)";
+      document.getElementById("crewMoraleBar").style.width = `${Math.round(state.morale)}%`;
+      document.getElementById("crewMoraleBar").style.backgroundColor = state.morale < 45 ? "var(--crimson)" : "var(--emerald)";
+      document.getElementById("crewWageVal").textContent = `$${state.wagePerHr}/hr`;
+
+      document.getElementById("crewRosterList").innerHTML = state.miners.map(w => `
+        <div class="sub-box mono" style="display:flex; justify-content:space-between; align-items:center; font-size:10px;">
+          <div>
+            <strong>${w.name}</strong>
+            <span style="font-size:9px; color:${w.role === 'engineer' ? 'var(--accent-cyan)' : 'var(--text-muted)'}; margin-left:4px;">
+              [${w.role === "engineer" ? "SAFETY ENG" : "MINER"}]
+            </span>
+          </div>
+          <span style="font-weight:700; color:${w.state === 'WAITING_STOCK' ? 'var(--crimson)' : 'var(--emerald)'};">
+            ${w.state.replace("_", " ")}
+          </span>
+        </div>
+      `).join("");
+
+      const mItems = [
+        { done: state.milestones.m1_sonar, label: "1. Locate Subsurface Deposit via Seismic Sonar" },
+        { done: state.milestones.m2_deep, label: "2. Engineer Deep Shaft Below 20m Depth" },
+        { done: state.milestones.m3_futures, label: "3. Deliver First Forward Futures Contract" },
+        { done: state.milestones.m4_parcel2, label: "4. Acquire Sierra Madre or Deep Crust Parcel" },
+        { done: state.milestones.m5_ipo, label: "5. Reach $1,000,000 Enterprise IPO Valuation" }
+      ];
+      document.getElementById("milestonesList").innerHTML = mItems.map(mi => `
+        <div class="sub-box" style="display:flex; align-items:center; gap:7px; font-size:11px; border-color:${mi.done ? 'var(--emerald-border)' : 'var(--border-hairline)'};">
+          <span class="mono" style="font-weight:800; color:${mi.done ? 'var(--emerald)' : 'var(--text-muted)'};">${mi.done ? "✓" : "○"}</span>
+          <span style="font-weight:${mi.done ? '700' : '500'}; color:${mi.done ? 'var(--emerald)' : 'var(--text-primary)'};">${mi.label}</span>
+        </div>
+      `).join("");
+
+      document.getElementById("marketNewsList").innerHTML = state.market.newsFeed.map(n => `
+        <div class="sub-box" style="font-size:10.5px; line-height:1.35;">
+          <div class="mono" style="display:flex; justify-content:space-between; font-size:9.5px; font-weight:700;">
+            <span style="color:${n.color};">${n.tag}</span>
+            <span style="color:var(--text-muted);">${n.time}</span>
+          </div>
+          <div style="margin-top:2px; color:var(--text-primary);">${n.headline}</div>
+        </div>
+      `).join("");
+    }
+
+    function renderOilSparkline() {
+      const sc = document.getElementById("oilSparkline");
+      if (!sc) return;
+      const r = sc.parentElement.getBoundingClientRect();
+      if (!r.width || !r.height) return;
+      const dpr = window.devicePixelRatio || 1;
+      sc.width = r.width * dpr;
+      sc.height = r.height * dpr;
+      const g = sc.getContext("2d");
+      g.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      const asset = state.market.selectedChart || "oil";
+      const hist = asset === "oil"
+        ? state.market.oilHistory
+        : (asset === "gold" ? state.market.goldHistory : state.market.lithiumHistory);
+      if (!hist || hist.length < 2) return;
+      const minV = Math.min(...hist) * 0.992;
+      const maxV = Math.max(...hist) * 1.008;
+      const span = Math.max(0.4, maxV - minV);
+      const up = hist[hist.length - 1] >= hist[0];
+
+      g.clearRect(0, 0, r.width, r.height);
+      g.strokeStyle = up ? "#059669" : "#dc2626";
+      g.lineWidth = 1.8;
+      g.beginPath();
+      hist.forEach((v, i) => {
+        const x = (i / (hist.length - 1)) * (r.width - 4) + 2;
+        const y = r.height - 3 - ((v - minV) / span) * (r.height - 6);
+        if (i === 0) g.moveTo(x, y);
+        else g.lineTo(x, y);
+      });
+      g.stroke();
+    }
+
+    const mineCanvas = document.getElementById("mineCanvas");
+    const mctx = mineCanvas.getContext("2d");
+
+    const terrainCacheCanvas = document.createElement("canvas");
+    const tctx = terrainCacheCanvas.getContext("2d");
+    let terrainCacheDirty = true;
+
+    function markTerrainCacheDirty() {
+      terrainCacheDirty = true;
+    }
+
+    const view = {
+      baseCellPx: 26,
+      zoom: 1.0,
+      cellPx: 26,
+      offX: 24,
+      surfY: 112,
+      panning: false,
+      panStartX: 0,
+      panStartY: 0,
+      panOrigX: 0,
+      panOrigY: 0,
+      draggingPlan: false,
+      planCells: []
+    };
+
+    function gridToScreen(col, row) {
+      return {
+        x: view.offX + col * view.cellPx,
+        y: view.surfY + row * view.cellPx
+      };
+    }
+
+    function screenToGrid(sx, sy) {
+      return {
+        col: Math.floor((sx - view.offX) / view.cellPx),
+        row: Math.floor((sy - view.surfY) / view.cellPx)
+      };
+    }
+
+    function adjustZoom(delta, anchorSx, anchorSy) {
+      const parent = mineCanvas.parentElement;
+      if (!parent) return;
+      const r = parent.getBoundingClientRect();
+      const sx = anchorSx ?? r.width * 0.5;
+      const sy = anchorSy ?? r.height * 0.5;
+
+      const worldCol = (sx - view.offX) / view.cellPx;
+      const worldRow = (sy - view.surfY) / view.cellPx;
+
+      view.zoom = Math.max(0.75, Math.min(1.85, +(view.zoom + delta).toFixed(2)));
+      view.cellPx = view.baseCellPx * view.zoom;
+      view.offX = sx - worldCol * view.cellPx;
+      view.surfY = sy - worldRow * view.cellPx;
+
+      document.getElementById("zoomLevelLabel").textContent = `${view.zoom.toFixed(2)}x`;
+      markTerrainCacheDirty();
+    }
+
+    function fitCamera() {
+      const parent = mineCanvas.parentElement;
+      if (!parent) return;
+      const r = parent.getBoundingClientRect();
+      if (!r.width || !r.height) return;
+      const dpr = window.devicePixelRatio || 1;
+      mineCanvas.width = r.width * dpr;
+      mineCanvas.height = r.height * dpr;
+      mctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      view.zoom = 1.0;
+      view.surfY = Math.max(96, r.height * 0.19);
+      const availW = r.width - 28;
+      const availH = r.height - view.surfY - 34;
+      view.baseCellPx = Math.max(16, Math.min(availW / GRID_COLS, availH / GRID_ROWS));
+      view.cellPx = view.baseCellPx;
+      view.offX = (r.width - GRID_COLS * view.cellPx) * 0.5;
+      document.getElementById("zoomLevelLabel").textContent = "1.00x";
+      markTerrainCacheDirty();
+    }
+
+    window.addEventListener("resize", () => {
+      fitCamera();
+      if (state.rightTab === "exchange") renderOilSparkline();
+      if (state.court.active) drawCourtroomCanvas();
+    });
+
+    mineCanvas.addEventListener("wheel", e => {
+      e.preventDefault();
+      const r = mineCanvas.getBoundingClientRect();
+      adjustZoom(e.deltaY < 0 ? 0.1 : -0.1, e.clientX - r.left, e.clientY - r.top);
+    }, { passive: false });
+
+    mineCanvas.addEventListener("contextmenu", e => e.preventDefault());
+
+    window.addEventListener("keydown", e => {
+      if (state.court?.active || state.strike?.active) return;
+      const matOrder = ["wood", "concrete", "steel", "hydraulic", "titanium"];
+      if (e.code === "Space") {
+        e.preventDefault();
+        setSimSpeed(state.simSpeed === 0 ? 1 : 0);
+      } else if (["1", "2", "3", "4", "5"].includes(e.key)) {
+        handleSupportClick(matOrder[Number(e.key) - 1]);
+      } else if (e.key === "s" || e.key === "S") {
+        setActiveTool("sonar");
+      } else if (e.key === "d" || e.key === "D") {
+        setActiveTool("drill");
+      } else if (e.key === "x" || e.key === "X") {
+        setActiveTool("demolish");
+      } else if (e.key === "e" || e.key === "E") {
+        toggleEmergencyEvacuate();
+      } else if (e.key === "m" || e.key === "M") {
+        toggleSfx();
+      }
+    });
+
+    mineCanvas.addEventListener("pointerdown", e => {
+      const r = mineCanvas.getBoundingClientRect();
+      const sx = e.clientX - r.left;
+      const sy = e.clientY - r.top;
+
+      if (e.button === 1 || e.button === 2) {
+        view.panning = true;
+        view.panStartX = sx;
+        view.panStartY = sy;
+        view.panOrigX = view.offX;
+        view.panOrigY = view.surfY;
+        return;
+      }
+      if (e.button !== 0) return;
+
+      const { col, row } = screenToGrid(sx, sy);
+      if (col < 0 || col >= GRID_COLS || row < 0 || row >= GRID_ROWS) return;
+
+      const p = getParcel();
+      const cfg = PARCELS[state.currentParcelId];
+
+      if (state.activeTool === "sonar") {
+        if (state.cash < 450) {
+          showToast("Insufficient Cash", "Need $450 to fire Seismic Sonar Ping", "var(--crimson)");
+          return;
+        }
+        state.cash -= 450;
+        playSfx("sonar");
+        const scanRadius = state.rdLab.gpr_v2 ? 4.3 : 2.3;
+        p.sonarPulses.push({ col: col + 0.5, row: row + 0.5, r: 0.4, maxR: scanRadius, alpha: 1.0 });
+        let found = 0;
+        p.deposits.forEach(dep => {
+          if (dep.amount > 0 && Math.hypot(dep.col - col, dep.row - row) <= scanRadius) {
+            if (!dep.revealed) found++;
+            dep.revealed = true;
+          }
+        });
+        p.methanePockets.forEach(mp => { if (Math.hypot(mp.col - col, mp.row - row) <= scanRadius) mp.revealed = true; });
+        p.aquiferZones.forEach(aq => { if (Math.hypot(aq.col - col, aq.row - row) <= scanRadius) aq.revealed = true; });
+        checkMilestones();
+        syncAllUI();
+        showToast("Seismic Sonar Ping (-$450)", found > 0 ? `Revealed ${found} subsurface deposit(s)!` : `Scanned ${Math.floor(scanRadius)}-cell radius`, "var(--accent-cyan)");
+        return;
+      }
+
+      if (state.activeTool === "drill") {
+        p.drill.col = col;
+        p.drill.targetRow = Math.max(1, row);
+        p.drill.currentRow = Math.min(p.drill.currentRow, 1.0);
+        p.drill.running = true;
+        playSfx("build");
+        document.getElementById("toggleDrillActiveBtn").textContent = "Rig: ON";
+        showToast("Drill Rig Aimed", `Boring Col ${col} down to ${(row * CELL_M).toFixed(1)}m depth`, "var(--amber)");
+        return;
+      }
+
+      if (state.activeTool === "vent" || state.activeTool === "pump") {
+        const cell = p.cells[row][col];
+        if (!cell || cell.status !== "built") {
+          showToast("Built Tunnel Required", "Install ventilation ducts or sump pumps inside built shaft cells", "var(--amber)");
+          return;
+        }
+        const cost = state.activeTool === "vent" ? 650 : 850;
+        if (state.cash < cost) {
+          showToast("Insufficient Cash", `Need $${cost} for utility installation`, "var(--crimson)");
+          return;
+        }
+        state.cash -= cost;
+        cell.utility = state.activeTool;
+        playSfx("build");
+        syncAllUI();
+        showToast(
+          state.activeTool === "vent" ? "Ventilation Scrubber Installed" : "Dewatering Sump Pump Installed",
+          `Active at Col ${col}, Depth ${(row * CELL_M).toFixed(1)}m (-$${cost})`,
+          "var(--emerald)"
+        );
+        return;
+      }
+
+      if (state.activeTool === "demolish") {
+        if (row <= 2 && col === cfg.entryCol) {
+          showToast("Main Hoist Shaft", "Primary vertical hoist shaft cannot be removed", "var(--amber)");
+          return;
+        }
+        const cell = p.cells[row][col];
+        if (cell) {
+          if (cell.status === "built") {
+            const refund = Math.round(SUPPORT_MATERIALS[cell.mat].crateCost * 0.8);
+            state.cash += refund;
+            playSfx("cash");
+            showToast("Support Salvaged (80%)", `Recovered +$${refund} material value`, "var(--emerald)");
+          }
+          p.cells[row][col] = null;
+          syncAllUI();
+        }
+        return;
+      }
+
+      if (state.activeTool === "blueprint") {
+        view.draggingPlan = true;
+        view.planCells = [{ r: row, c: col }];
+      }
+    });
+
+    mineCanvas.addEventListener("pointermove", e => {
+      const r = mineCanvas.getBoundingClientRect();
+      const sx = e.clientX - r.left;
+      const sy = e.clientY - r.top;
+
+      if (view.panning) {
+        view.offX = view.panOrigX + (sx - view.panStartX);
+        view.surfY = view.panOrigY + (sy - view.panStartY);
+        markTerrainCacheDirty();
+        return;
+      }
+
+      const { col, row } = screenToGrid(sx, sy);
+      const p = getParcel();
+      const tip = document.getElementById("cellHoverTooltip");
+
+      if (col >= 0 && col < GRID_COLS && row >= 0 && row < GRID_ROWS) {
+        const st = getRowStratum(row);
+        document.getElementById("cursorGridHud").textContent = `Col ${col} • ${(row * CELL_M).toFixed(1)}m (${st.name.split(" ")[0]})`;
+
+        if (view.draggingPlan) {
+          if (!view.planCells.some(pc => pc.r === row && pc.c === col)) {
+            view.planCells.push({ r: row, c: col });
+          }
+        }
+
+        const eng = computeCellEngineering(p, row, col);
+        const cell = p.cells[row][col];
+        const dep = p.deposits.find(d => d.revealed && d.amount > 0 && d.row === row && d.col === col);
+        tip.innerHTML = `
+          <div><strong>Col ${col} • Depth ${(row * CELL_M).toFixed(1)}m</strong> (${st.name})</div>
+          <div>${cell ? `${SUPPORT_MATERIALS[cell.mat].short} [${cell.status.toUpperCase()}]` : "Unexcavated Rock"} • Load: <strong>${eng.loadKn} kN</strong></div>
+          <div>Safety Factor: <strong style="color:${eng.fos < 1.15 ? 'var(--crimson)' : (eng.fos < 1.45 ? 'var(--amber)' : 'var(--emerald)')}">FoS ${eng.fos.toFixed(2)}</strong>${eng.gasHazard ? " • ⚠ METHANE" : ""}${eng.wetSeepage ? " • 💧 SEEPAGE" : ""}</div>
+          ${dep ? `<div style="color:var(--emerald)">★ ${dep.grade} ${dep.type.toUpperCase()}: ${dep.amount.toFixed(1)} ${dep.unit}</div>` : ""}
+        `;
+        tip.style.left = `${Math.min(r.width - 245, sx + 12)}px`;
+        tip.style.top = `${Math.max(8, sy - 64)}px`;
+        tip.classList.remove("hidden");
+      } else {
+        tip.classList.add("hidden");
+      }
+    });
+
+    window.addEventListener("pointerup", () => {
+      if (view.panning) {
+        view.panning = false;
+        return;
+      }
+      if (view.draggingPlan) {
+        view.draggingPlan = false;
+        const p = getParcel();
+        let added = 0;
+        view.planCells.forEach(({ r, c }) => {
+          if (!p.cells[r][c]) {
+            const eng = computeCellEngineering(p, r, c);
+            p.cells[r][c] = {
+              mat: state.selectedSupport,
+              status: "planned",
+              buildPct: 0,
+              fos: eng.fos,
+              loadKn: eng.loadKn,
+              corrosionKn: 0,
+              utility: null,
+              assignedId: null
+            };
+            added++;
+          }
+        });
+        view.planCells = [];
+        if (added > 0) {
+          playSfx("build");
+          syncAllUI();
+        }
+      }
+    });
+
+    function rebuildTerrainCache(W, H, isDark) {
+      const dpr = window.devicePixelRatio || 1;
+      terrainCacheCanvas.width = W * dpr;
+      terrainCacheCanvas.height = H * dpr;
+      tctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      const cp = view.cellPx;
+      tctx.clearRect(0, 0, W, H);
+      tctx.fillStyle = isDark ? "#0b0e14" : "#f6f7f9";
+      tctx.fillRect(0, 0, W, H);
+
+      for (let row = 0; row < GRID_ROWS; row++) {
+        const st = getRowStratum(row);
+        const tl = gridToScreen(0, row);
+        tctx.fillStyle = isDark ? st.colorNight : st.colorDay;
+        tctx.globalAlpha = isDark ? 0.88 : 0.34;
+        tctx.fillRect(tl.x, tl.y, GRID_COLS * cp, cp);
+        tctx.globalAlpha = 1.0;
+
+        if (row === 0 || row === 4 || row === 8 || row === 12 || row === 15) {
+          tctx.fillStyle = isDark ? "#94a3b8" : "#334155";
+          tctx.font = "600 9px JetBrains Mono, monospace";
+          tctx.textAlign = "left";
+          tctx.fillText(`${(row * CELL_M).toFixed(0)}m • ${st.name}`, tl.x + 4, tl.y + 11);
+        }
+      }
+
+      tctx.strokeStyle = isDark ? "rgba(148,163,184,0.12)" : "rgba(15,23,42,0.08)";
+      tctx.lineWidth = 1;
+      for (let c = 0; c <= GRID_COLS; c++) {
+        const pt = gridToScreen(c, 0);
+        tctx.beginPath();
+        tctx.moveTo(pt.x, pt.y);
+        tctx.lineTo(pt.x, pt.y + GRID_ROWS * cp);
+        tctx.stroke();
+      }
+      for (let row = 0; row <= GRID_ROWS; row++) {
+        const pt = gridToScreen(0, row);
+        tctx.beginPath();
+        tctx.moveTo(pt.x, pt.y);
+        tctx.lineTo(pt.x + GRID_COLS * cp, pt.y);
+        tctx.stroke();
+      }
+
+      const surfL = gridToScreen(0, 0);
+      const surfR = gridToScreen(GRID_COLS, 0);
+      tctx.strokeStyle = isDark ? "#cbd5e1" : "#1e293b";
+      tctx.lineWidth = 2.6;
+      tctx.beginPath();
+      tctx.moveTo(surfL.x, surfL.y);
+      tctx.lineTo(surfR.x, surfR.y);
+      tctx.stroke();
+
+      terrainCacheDirty = false;
+    }
+
+    function drawSurfaceBuildings(cfg, isDark) {
+      const cp = view.cellPx;
+
+      const supPt = gridToScreen(cfg.supplyCol - 1.2, 0);
+      const supW = cp * 2.6;
+      const supH = 34;
+      mctx.fillStyle = isDark ? "#1e293b" : "#ffffff";
+      mctx.strokeStyle = "#d97706";
+      mctx.lineWidth = 1.6;
+      mctx.fillRect(supPt.x, supPt.y - supH, supW, supH);
+      mctx.strokeRect(supPt.x, supPt.y - supH, supW, supH);
+
+      mctx.fillStyle = "#d97706";
+      mctx.font = "700 8.5px JetBrains Mono, monospace";
+      mctx.textAlign = "center";
+      mctx.fillText("SUPPLY ROOM", supPt.x + supW * 0.5, supPt.y - supH - 4);
+
+      let cx = supPt.x + 5;
+      Object.values(SUPPORT_MATERIALS).forEach(m => {
+        const count = Math.min(4, state.supplyRoom[m.id] || 0);
+        for (let i = 0; i < count; i++) {
+          mctx.fillStyle = m.colorDay;
+          mctx.fillRect(cx, supPt.y - 7 - i * 6, 7, 5);
+        }
+        cx += 9;
+      });
+
+      const hoistPt = gridToScreen(cfg.entryCol, 0);
+      mctx.strokeStyle = isDark ? "#38bdf8" : "#0284c7";
+      mctx.lineWidth = 2.2;
+      mctx.beginPath();
+      mctx.moveTo(hoistPt.x + 2, hoistPt.y);
+      mctx.lineTo(hoistPt.x + cp * 0.5, hoistPt.y - 44);
+      mctx.lineTo(hoistPt.x + cp - 2, hoistPt.y);
+      mctx.stroke();
+
+      mctx.beginPath();
+      mctx.arc(hoistPt.x + cp * 0.5, hoistPt.y - 44, 6, 0, Math.PI * 2);
+      mctx.stroke();
+
+      const tankPt = gridToScreen(cfg.tankCol, 0);
+      const fillPct = Math.min(1, getTotalStoredUnits() / getStorageCapacity());
+      for (let t = 0; t < 2; t++) {
+        const tx = tankPt.x + t * 24;
+        mctx.fillStyle = isDark ? "#1e293b" : "#e2e8f0";
+        mctx.strokeStyle = isDark ? "#94a3b8" : "#475569";
+        mctx.lineWidth = 1.4;
+        mctx.fillRect(tx, tankPt.y - 28, 20, 28);
+        mctx.strokeRect(tx, tankPt.y - 28, 20, 28);
+
+        if (fillPct > 0) {
+          mctx.fillStyle = "#059669";
+          const fh = 26 * fillPct;
+          mctx.fillRect(tx + 1, tankPt.y - 1 - fh, 18, fh);
+        }
+      }
+      mctx.fillStyle = isDark ? "#94a3b8" : "#475569";
+      mctx.font = "700 8.5px JetBrains Mono, monospace";
+      mctx.textAlign = "center";
+      mctx.fillText("STORAGE TANKS", tankPt.x + 22, tankPt.y - 32);
+    }
+
+    function renderMineCanvas(tSec) {
+      const parent = mineCanvas.parentElement;
+      if (!parent) return;
+      const r = parent.getBoundingClientRect();
+      const W = r.width, H = r.height;
+      if (!W || !H) return;
+
+      const isDark = state.darkMode;
+      const p = getParcel();
+      const cfg = PARCELS[state.currentParcelId];
+      const cp = view.cellPx;
+
+      if (terrainCacheDirty) {
+        rebuildTerrainCache(W, H, isDark);
+      }
+
+      mctx.clearRect(0, 0, W, H);
+      mctx.drawImage(terrainCacheCanvas, 0, 0, W, H);
+
+      drawSurfaceBuildings(cfg, isDark);
+
+      p.deposits.forEach(dep => {
+        if (!dep.revealed || dep.amount <= 0) return;
+        const pt = gridToScreen(dep.col, dep.row);
+        mctx.fillStyle = dep.type === "oil" ? "#1e293b" : (dep.type === "gold" ? "#f59e0b" : "#06b6d4");
+        mctx.beginPath();
+        mctx.roundRect(pt.x + 3, pt.y + 3, cp - 6, cp - 6, 4);
+        mctx.fill();
+
+        mctx.fillStyle = "#ffffff";
+        mctx.font = "700 8.5px JetBrains Mono, monospace";
+        mctx.textAlign = "center";
+        mctx.fillText(dep.type === "oil" ? "OIL" : (dep.type === "gold" ? "AU" : "LI"), pt.x + cp * 0.5, pt.y + cp * 0.62);
+      });
+
+      p.methanePockets.forEach(mp => {
+        if (!mp.revealed) return;
+        const pt = gridToScreen(mp.col, mp.row);
+        mctx.fillStyle = "rgba(239, 68, 68, 0.25)";
+        mctx.strokeStyle = "#ef4444";
+        mctx.lineWidth = 1.2;
+        mctx.fillRect(pt.x + 2, pt.y + 2, cp - 4, cp - 4);
+        mctx.strokeRect(pt.x + 2, pt.y + 2, cp - 4, cp - 4);
+      });
+
+      p.aquiferZones.forEach(aq => {
+        if (!aq.revealed) return;
+        const pt = gridToScreen(aq.col, aq.row);
+        mctx.fillStyle = "rgba(59, 130, 246, 0.25)";
+        mctx.strokeStyle = "#3b82f6";
+        mctx.lineWidth = 1.2;
+        mctx.fillRect(pt.x + 2, pt.y + 2, cp - 4, cp - 4);
+        mctx.strokeRect(pt.x + 2, pt.y + 2, cp - 4, cp - 4);
+      });
+
+      for (let row = 0; row < GRID_ROWS; row++) {
+        for (let c = 0; c < GRID_COLS; c++) {
+          const cell = p.cells[row][c];
+          if (!cell) continue;
+          const pt = gridToScreen(c, row);
+          const mat = SUPPORT_MATERIALS[cell.mat];
+
+          if (cell.status === "planned") {
+            mctx.save();
+            mctx.setLineDash([3, 3]);
+            mctx.fillStyle = "rgba(2, 132, 199, 0.12)";
+            mctx.strokeStyle = isDark ? "#38bdf8" : "#0284c7";
+            mctx.lineWidth = 1.3;
+            mctx.fillRect(pt.x + 2, pt.y + 2, cp - 4, cp - 4);
+            mctx.strokeRect(pt.x + 2, pt.y + 2, cp - 4, cp - 4);
+            mctx.restore();
+          } else {
+            mctx.fillStyle = isDark ? "#090d14" : "#1e293b";
+            mctx.fillRect(pt.x + 1, pt.y + 1, cp - 2, cp - 2);
+
+            const frameColor = cell.fos < 1.18
+              ? "#dc2626"
+              : (cell.fos < 1.45 ? "#d97706" : (isDark ? mat.colorNight : mat.colorDay));
+            mctx.strokeStyle = frameColor;
+            mctx.lineWidth = 2.6;
+            mctx.strokeRect(pt.x + 2.5, pt.y + 2.5, cp - 5, cp - 5);
+
+            mctx.beginPath();
+            mctx.moveTo(pt.x + 2.5, pt.y + 7);
+            mctx.lineTo(pt.x + 7, pt.y + 2.5);
+            mctx.moveTo(pt.x + cp - 7, pt.y + 2.5);
+            mctx.lineTo(pt.x + cp - 2.5, pt.y + 7);
+            mctx.stroke();
+
+            if (cell.utility === "vent") {
+              mctx.fillStyle = "#10b981";
+              mctx.fillRect(pt.x + cp * 0.5 - 4, pt.y + 4, 8, 4);
+            } else if (cell.utility === "pump") {
+              mctx.fillStyle = "#38bdf8";
+              mctx.fillRect(pt.x + cp * 0.5 - 4, pt.y + cp - 8, 8, 4);
+            }
+          }
+        }
+      }
+
+      if (view.draggingPlan) {
+        view.planCells.forEach(({ r: pr, c: pc }) => {
+          const pt = gridToScreen(pc, pr);
+          mctx.fillStyle = "rgba(5, 150, 105, 0.28)";
+          mctx.fillRect(pt.x + 2, pt.y + 2, cp - 4, cp - 4);
+        });
+      }
+
+      const hoistTop = gridToScreen(cfg.entryCol, 0);
+      const hoistCage = gridToScreen(cfg.entryCol, p.hoistRow);
+      mctx.strokeStyle = "#94a3b8";
+      mctx.lineWidth = 1.4;
+      mctx.beginPath();
+      mctx.moveTo(hoistTop.x + cp * 0.5, hoistTop.y - 38);
+      mctx.lineTo(hoistCage.x + cp * 0.5, hoistCage.y + 4);
+      mctx.stroke();
+
+      mctx.strokeStyle = "#f59e0b";
+      mctx.lineWidth = 2;
+      mctx.strokeRect(hoistCage.x + 4, hoistCage.y + 3, cp - 8, cp - 6);
+
+      const drill = p.drill;
+      const dSurf = gridToScreen(drill.col, 0);
+      const dTip = gridToScreen(drill.col, drill.currentRow);
+
+      mctx.fillStyle = "#d97706";
+      mctx.fillRect(dSurf.x + 3, dSurf.y - 24, cp - 6, 24);
+      mctx.strokeStyle = isDark ? "#f8fafc" : "#0f172a";
+      mctx.lineWidth = 1.2;
+      mctx.strokeRect(dSurf.x + 3, dSurf.y - 24, cp - 6, 24);
+
+      mctx.strokeStyle = "#64748b";
+      mctx.lineWidth = 4;
+      mctx.beginPath();
+      mctx.moveTo(dSurf.x + cp * 0.5, dSurf.y);
+      mctx.lineTo(dTip.x + cp * 0.5, dTip.y + cp * 0.5);
+      mctx.stroke();
+
+      const spin = Math.sin(tSec * 24) * 3;
+      mctx.fillStyle = drill.bitIntegrity > 0 ? "#f59e0b" : "#dc2626";
+      mctx.beginPath();
+      mctx.moveTo(dTip.x + cp * 0.5 - 5 + spin * 0.4, dTip.y + cp * 0.35);
+      mctx.lineTo(dTip.x + cp * 0.5 + 5 + spin * 0.4, dTip.y + cp * 0.35);
+      mctx.lineTo(dTip.x + cp * 0.5, dTip.y + cp * 0.72);
+      mctx.closePath();
+      mctx.fill();
+
+      if (drill.running && drill.bitIntegrity > 0) {
+        const ringR = drill.pulseTimer * cp * 3.8;
+        mctx.strokeStyle = `rgba(217, 119, 6, ${Math.max(0, 0.55 * (1 - drill.pulseTimer))})`;
+        mctx.lineWidth = 1.6;
+        mctx.beginPath();
+        mctx.arc(dTip.x + cp * 0.5, dTip.y + cp * 0.5, ringR, 0, Math.PI * 2);
+        mctx.stroke();
+      }
+
+      for (let i = p.sonarPulses.length - 1; i >= 0; i--) {
+        const sp = p.sonarPulses[i];
+        sp.r += 0.09;
+        sp.alpha -= 0.022;
+        if (sp.alpha <= 0) {
+          p.sonarPulses.splice(i, 1);
+          continue;
+        }
+        const spt = gridToScreen(sp.col, sp.row);
+        mctx.strokeStyle = `rgba(2, 132, 199, ${sp.alpha})`;
+        mctx.lineWidth = 2;
+        mctx.beginPath();
+        mctx.arc(spt.x, spt.y, sp.r * cp, 0, Math.PI * 2);
+        mctx.stroke();
+      }
+
+      state.miners.forEach(w => {
+        const wpt = gridToScreen(w.col + 0.5, w.row + 0.65);
+
+        mctx.fillStyle = w.role === "engineer" ? "#0284c7" : "#f97316";
+        mctx.beginPath();
+        mctx.roundRect(wpt.x - 4.5, wpt.y - 10, 9, 10, 2);
+        mctx.fill();
+
+        mctx.fillStyle = w.role === "engineer" ? "#f8fafc" : "#facc15";
+        mctx.beginPath();
+        mctx.arc(wpt.x, wpt.y - 12, 4, Math.PI, 0);
+        mctx.fill();
+
+        if (w.row >= 0) {
+          mctx.fillStyle = "rgba(250, 204, 21, 0.24)";
+          mctx.beginPath();
+          mctx.moveTo(wpt.x, wpt.y - 12);
+          mctx.lineTo(wpt.x + 18, wpt.y - 18);
+          mctx.lineTo(wpt.x + 18, wpt.y - 6);
+          mctx.closePath();
+          mctx.fill();
+        }
+
+        if (w.carryingMat) {
+          mctx.fillStyle = SUPPORT_MATERIALS[w.carryingMat].colorDay;
+          mctx.fillRect(wpt.x + 4, wpt.y - 9, 6, 6);
+        } else if (w.carryingOre) {
+          mctx.fillStyle = w.carryingOre.type === "oil" ? "#1e293b" : (w.carryingOre.type === "gold" ? "#f59e0b" : "#06b6d4");
+          mctx.beginPath();
+          mctx.arc(wpt.x + 6, wpt.y - 6, 3.5, 0, Math.PI * 2);
+          mctx.fill();
+        }
+
+        if (w.state === "WAITING_STOCK") {
+          mctx.fillStyle = "#dc2626";
+          mctx.font = "700 8px JetBrains Mono, monospace";
+          mctx.textAlign = "center";
+          mctx.fillText("NEED CRATE", wpt.x, wpt.y - 19);
+        }
+      });
+    }
+
+    let prevTime = performance.now();
+    let uiTimer = 0;
+
+    function mainLoop(now) {
+      const dt = Math.min(0.05, (now - prevTime) / 1000);
+      prevTime = now;
+
+      stepSimulation(dt);
+      renderMineCanvas(now / 1000);
+
+      uiTimer += dt;
+      if (uiTimer >= 0.25) {
+        uiTimer = 0;
+        syncAllUI();
+        saveToLocalStorage();
+      }
+
+      requestAnimationFrame(mainLoop);
+    }
+
+    window.onload = function () {
+      loadFromLocalStorage();
+      setTheme(state.darkMode);
+      setSimSpeed(state.simSpeed);
+      setDrillThrottle(state.drillThrottle);
+      setRightTab(state.rightTab || "exchange");
+      setChartAsset(state.market.selectedChart || "oil");
+      updateContextBar();
+      syncAllUI();
+      fitCamera();
+      requestAnimationFrame(mainLoop);
+    };
+  </script>
+</body>
+</html>
